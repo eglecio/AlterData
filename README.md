@@ -3,8 +3,11 @@ Projeto para atender ao gerenciamento de produtos e clientes empresariais, usand
 
 # Descritivo
 Neste repositório teremos a aplicação mobile no formato SPA (Single Page Application), que irá consumir os recursos ofertados por uma web api.
+
 O app será criado utilizando Vue.JS, sendo necessário a autenticação válida para acesso aos dados ofertados pelo WS.
+
 A API será desenvolvida no padrão RESTful, na versão 8 do AspNet Core.
+
 Usaremos o banco de dados PostgreSQL na versão 17.2 (21 novembro 2024). Para persistência e manipulação de dados será usado o ORM Entity Framework 8.
 
 # Planejamento
