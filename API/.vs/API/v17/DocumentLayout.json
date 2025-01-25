@@ -1,7 +1,20 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Projetos\\AlterData\\API\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\servicos\\repositoriobase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\interfaces\\irepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\servicos\\repositorioexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\entidades\\entidadebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,6 +35,58 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RepositorioException.cs",
+              "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Servicos\\RepositorioException.cs",
+              "RelativeDocumentMoniker": "..\\Dominio\\Servicos\\RepositorioException.cs",
+              "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Servicos\\RepositorioException.cs",
+              "RelativeToolTip": "..\\Dominio\\Servicos\\RepositorioException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-25T17:28:18.838Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EntidadeBase.cs",
+              "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Entidades\\EntidadeBase.cs",
+              "RelativeDocumentMoniker": "..\\Dominio\\Entidades\\EntidadeBase.cs",
+              "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Entidades\\EntidadeBase.cs",
+              "RelativeToolTip": "..\\Dominio\\Entidades\\EntidadeBase.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-25T13:03:43.717Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RepositorioBase.cs",
+              "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Servicos\\RepositorioBase.cs",
+              "RelativeDocumentMoniker": "..\\Dominio\\Servicos\\RepositorioBase.cs",
+              "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Servicos\\RepositorioBase.cs",
+              "RelativeToolTip": "..\\Dominio\\Servicos\\RepositorioBase.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-25T12:58:14.264Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IRepositorio.cs",
+              "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Interfaces\\IRepositorio.cs",
+              "RelativeDocumentMoniker": "..\\Dominio\\Interfaces\\IRepositorio.cs",
+              "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Interfaces\\IRepositorio.cs",
+              "RelativeToolTip": "..\\Dominio\\Interfaces\\IRepositorio.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAABHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-25T12:40:17.558Z",
+              "EditorCaption": ""
             }
           ]
         }
