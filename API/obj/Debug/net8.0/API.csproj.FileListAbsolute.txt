@@ -31,3 +31,11 @@ C:\Projetos\AlterData\API\obj\Debug\net8.0\refint\API.dll
 C:\Projetos\AlterData\API\obj\Debug\net8.0\API.pdb
 C:\Projetos\AlterData\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 C:\Projetos\AlterData\API\obj\Debug\net8.0\ref\API.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
