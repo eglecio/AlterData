@@ -1,4 +1,5 @@
 C:\Projetos\AlterData\Dominio\bin\Debug\net8.0\Dominio.deps.json
+C:\Projetos\AlterData\Dominio\bin\Debug\net8.0\Dominio.runtimeconfig.json
 C:\Projetos\AlterData\Dominio\bin\Debug\net8.0\Dominio.dll
 C:\Projetos\AlterData\Dominio\bin\Debug\net8.0\Dominio.pdb
 C:\Projetos\AlterData\Dominio\obj\Debug\net8.0\Dominio.csproj.AssemblyReference.cache
@@ -10,4 +11,5 @@ C:\Projetos\AlterData\Dominio\obj\Debug\net8.0\Dominio.sourcelink.json
 C:\Projetos\AlterData\Dominio\obj\Debug\net8.0\Dominio.dll
 C:\Projetos\AlterData\Dominio\obj\Debug\net8.0\refint\Dominio.dll
 C:\Projetos\AlterData\Dominio\obj\Debug\net8.0\Dominio.pdb
+C:\Projetos\AlterData\Dominio\obj\Debug\net8.0\Dominio.genruntimeconfig.cache
 C:\Projetos\AlterData\Dominio\obj\Debug\net8.0\ref\Dominio.dll
