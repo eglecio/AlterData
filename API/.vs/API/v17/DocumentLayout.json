@@ -46,8 +46,7 @@
               "RelativeToolTip": "..\\Dominio\\Servicos\\RepositorioException.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T17:28:18.838Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T17:28:18.838Z"
             },
             {
               "$type": "Document",
@@ -59,8 +58,7 @@
               "RelativeToolTip": "..\\Dominio\\Entidades\\EntidadeBase.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T13:03:43.717Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T13:03:43.717Z"
             },
             {
               "$type": "Document",
@@ -70,7 +68,7 @@
               "RelativeDocumentMoniker": "..\\Dominio\\Servicos\\RepositorioBase.cs",
               "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Servicos\\RepositorioBase.cs",
               "RelativeToolTip": "..\\Dominio\\Servicos\\RepositorioBase.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAhAAAA",
+              "ViewState": "AQIAAHQAAAAAAAAAAAAYwI0AAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-25T12:58:14.264Z",
               "EditorCaption": ""
@@ -85,8 +83,7 @@
               "RelativeToolTip": "..\\Dominio\\Interfaces\\IRepositorio.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T12:40:17.558Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T12:40:17.558Z"
             }
           ]
         }

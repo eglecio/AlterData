@@ -58,29 +58,69 @@ namespace Dominio.Servicos {
       await _contextoBancoDados.SaveChangesAsync();
     }
 
+    //public async Task RemoverAsync(T entidade) {
+    //  if (entidade == null)
+    //    throw new ArgumentNullException(nameof(entidade), "Entidade não pode ser nula.");
+
+    //  try {
+    //    var entry = _contextoBancoDados.Entry(entidade);
+
+    //    if (entry.State == EntityState.Detached) { // Caso não está sendo rastreada anexamos ela...
+    //      _dbSet.Attach(entidade);
+    //    }
+
+    //    _dbSet.Remove(entidade);
+    //    await _contextoBancoDados.SaveChangesAsync();
+    //  }
+    //  catch (DbUpdateException ex) {
+    //    LogarErro(ex);
+    //    throw new RepositorioException("Erro ao remover entidade.", ex);
+    //  }
+    //  catch (Exception ex) {
+    //    LogarErro(ex);
+    //    throw;
+    //  }
+    //}
+
     public async Task RemoverAsync(T entidade) {
       if (entidade == null)
         throw new ArgumentNullException(nameof(entidade), "Entidade não pode ser nula.");
 
       try {
-        var entry = _contextoBancoDados.Entry(entidade);
-
-        if (entry.State == EntityState.Detached) { // Caso não está sendo rastreada anexamos ela...
-          _dbSet.Attach(entidade);
-        }
-
-        _dbSet.Remove(entidade);
+        (entidade as EntidadeBase).Excluido = true;
+        _contextoBancoDados.Entry(entidade).State = EntityState.Modified;
         await _contextoBancoDados.SaveChangesAsync();
       }
       catch (DbUpdateException ex) {
         LogarErro(ex);
-        throw new RepositorioException("Erro ao remover entidade.", ex);
+        throw new RepositorioException("Erro ao remover entidade por elemento.", ex);
       }
       catch (Exception ex) {
         LogarErro(ex);
         throw;
       }
     }
+
+    //public async Task RemoverPorIdAsync(object id) {
+    //  if (id == null)
+    //    throw new ArgumentNullException(nameof(id), "Id não pode ser nulo ou inválido.");
+
+    //  try {
+    //    var entidade = await _dbSet.FindAsync(id) ??
+    //      throw new RepositorioException($"Entidade com ID {id} não encontrada.", RepositorioException.ErrorCode.ErroNaoEncontrado);
+
+    //    _dbSet.Remove(entidade);
+    //    await _contextoBancoDados.SaveChangesAsync();
+    //  }
+    //  catch (DbUpdateException ex) {
+    //    LogarErro(ex);
+    //    throw new RepositorioException("Erro ao remover entidade por ID.", ex);
+    //  }
+    //  catch (Exception ex) {
+    //    LogarErro(ex);
+    //    throw;
+    //  }
+    //}
 
     public async Task RemoverPorIdAsync(object id) {
       if (id == null)
@@ -90,8 +130,7 @@ namespace Dominio.Servicos {
         var entidade = await _dbSet.FindAsync(id) ??
           throw new RepositorioException($"Entidade com ID {id} não encontrada.", RepositorioException.ErrorCode.ErroNaoEncontrado);
 
-        _dbSet.Remove(entidade);
-        await _contextoBancoDados.SaveChangesAsync();
+        await RemoverAsync(entidade);
       }
       catch (DbUpdateException ex) {
         LogarErro(ex);
@@ -102,6 +141,7 @@ namespace Dominio.Servicos {
         throw;
       }
     }
+
 
     #endregion
 
