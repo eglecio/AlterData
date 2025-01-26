@@ -111,3 +111,7 @@ C:\Projetos\AlterData\API\obj\Debug\net8.0\refint\API.dll
 C:\Projetos\AlterData\API\obj\Debug\net8.0\API.pdb
 C:\Projetos\AlterData\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 C:\Projetos\AlterData\API\obj\Debug\net8.0\ref\API.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\AutoMapper.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\FluentValidation.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
