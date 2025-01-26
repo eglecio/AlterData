@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.Servicos {
 
-  public abstract class RepositorioBase<T, TContext>(TContext context) : IRepositorio<T>
+  public class RepositorioBase<T, TContext>(TContext context) : IRepositorio<T>
     where T : class
     where TContext : DbContext {
 
