@@ -1,11 +1,10 @@
-using API.Models;
 using AutoMapper;
 using Dominio.Entidades;
 using Dominio.Interfaces;
+using Dominio.ModelosDTO;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers {
   [ApiController]

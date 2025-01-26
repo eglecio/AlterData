@@ -1,6 +1,5 @@
 ﻿using Dominio.Entidades;
 using FluentValidation;
-using System.Text.RegularExpressions;
 
 namespace Dominio.Validacao {
 
