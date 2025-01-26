@@ -3,10 +3,11 @@
   "WorkspaceRootPath": "C:\\Projetos\\AlterData\\API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2408031B-D751-41D9-9A3D-152A9624AFD9}|..\\Testes\\Testes.csproj|c:\\projetos\\alterdata\\testes\\dominio\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|c:\\projetos\\alterdata\\api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|solutionrelative:controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\validacao\\clientevalidador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\entidades\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|c:\\projetos\\alterdata\\api\\controllers\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,14 +18,41 @@
       "RelativeMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\entidades\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\servicos\\repositoriobase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\servicos\\repositoriobase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\servicos\\repositorioexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\interfaces\\irepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\enumeradores\\perfilusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|c:\\projetos\\alterdata\\api\\validacaodto\\usuariovalidador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|solutionrelative:validacaodto\\usuariovalidador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|c:\\projetos\\alterdata\\api\\mapeamento\\usuarioprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|solutionrelative:mapeamento\\usuarioprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\validacao\\clientevalidador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|c:\\projetos\\alterdata\\api\\mapeamento\\clienteprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|solutionrelative:mapeamento\\clienteprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2408031B-D751-41D9-9A3D-152A9624AFD9}|..\\Testes\\Testes.csproj|c:\\projetos\\alterdata\\testes\\dominio\\clientevalidadortestes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|c:\\projetos\\alterdata\\api\\models\\usuariologindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|solutionrelative:models\\usuariologindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\entidades\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|c:\\projetos\\alterdata\\api\\models\\clientedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -41,19 +69,7 @@
       "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\entidades\\entidadebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\entidades\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\entidades\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\enumeradores\\perfilusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\interfaces\\irepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{163E95FB-12B7-454B-9D96-84EF5BA71329}|..\\Dominio\\Dominio.csproj|c:\\projetos\\alterdata\\dominio\\servicos\\repositorioexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -63,7 +79,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -79,41 +95,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ClienteValidador.cs",
-              "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Validacao\\ClienteValidador.cs",
-              "RelativeDocumentMoniker": "..\\Dominio\\Validacao\\ClienteValidador.cs",
-              "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Validacao\\ClienteValidador.cs",
-              "RelativeToolTip": "..\\Dominio\\Validacao\\ClienteValidador.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAgwAkAAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-26T02:57:59.036Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UnitTest1.cs",
-              "DocumentMoniker": "C:\\Projetos\\AlterData\\Testes\\Dominio\\UnitTest1.cs",
-              "RelativeDocumentMoniker": "..\\Testes\\Dominio\\UnitTest1.cs",
-              "ToolTip": "C:\\Projetos\\AlterData\\Testes\\Dominio\\UnitTest1.cs",
-              "RelativeToolTip": "..\\Testes\\Dominio\\UnitTest1.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFcAAAAvAAAA",
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "C:\\Projetos\\AlterData\\API\\Controllers\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UsuarioController.cs",
+              "ToolTip": "C:\\Projetos\\AlterData\\API\\Controllers\\UsuarioController.cs",
+              "RelativeToolTip": "Controllers\\UsuarioController.cs",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAgwCYAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-26T02:53:07.127Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ClienteDTO.cs",
-              "DocumentMoniker": "C:\\Projetos\\AlterData\\API\\Models\\ClienteDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ClienteDTO.cs",
-              "ToolTip": "C:\\Projetos\\AlterData\\API\\Models\\ClienteDTO.cs",
-              "RelativeToolTip": "Models\\ClienteDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAoAAABAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T22:20:29.277Z",
+              "WhenOpened": "2025-01-26T15:53:22.01Z",
               "EditorCaption": ""
             },
             {
@@ -124,9 +114,35 @@
               "RelativeDocumentMoniker": "Controllers\\ClienteController.cs",
               "ToolTip": "C:\\Projetos\\AlterData\\API\\Controllers\\ClienteController.cs",
               "RelativeToolTip": "Controllers\\ClienteController.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAQwCMAAAArAAAA",
+              "ViewState": "AQIAABEAAAAAAAAAAAAQwCsAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-25T22:13:10.49Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RepositorioBase.cs",
+              "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Servicos\\RepositorioBase.cs",
+              "RelativeDocumentMoniker": "..\\Dominio\\Servicos\\RepositorioBase.cs",
+              "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Servicos\\RepositorioBase.cs",
+              "RelativeToolTip": "..\\Dominio\\Servicos\\RepositorioBase.cs",
+              "ViewState": "AQIAAIIAAAAAAAAAAAAewJoAAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-25T12:58:14.264Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "UsuarioLoginDTO.cs",
+              "DocumentMoniker": "C:\\Projetos\\AlterData\\API\\Models\\UsuarioLoginDTO.cs",
+              "RelativeDocumentMoniker": "Models\\UsuarioLoginDTO.cs",
+              "ToolTip": "C:\\Projetos\\AlterData\\API\\Models\\UsuarioLoginDTO.cs",
+              "RelativeToolTip": "Models\\UsuarioLoginDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-26T15:55:04.704Z",
               "EditorCaption": ""
             },
             {
@@ -137,40 +153,105 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Projetos\\AlterData\\API\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-25T19:11:06.486Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IRepositorio.cs",
+              "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Interfaces\\IRepositorio.cs",
+              "RelativeDocumentMoniker": "..\\Dominio\\Interfaces\\IRepositorio.cs",
+              "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Interfaces\\IRepositorio.cs",
+              "RelativeToolTip": "..\\Dominio\\Interfaces\\IRepositorio.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwA8AAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-25T12:40:17.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Projetos\\AlterData\\API\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Projetos\\AlterData\\API\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-01-25T19:10:02.156Z",
+              "Title": "UsuarioValidador.cs",
+              "DocumentMoniker": "C:\\Projetos\\AlterData\\API\\ValidacaoDTO\\UsuarioValidador.cs",
+              "RelativeDocumentMoniker": "ValidacaoDTO\\UsuarioValidador.cs",
+              "ToolTip": "C:\\Projetos\\AlterData\\API\\ValidacaoDTO\\UsuarioValidador.cs",
+              "RelativeToolTip": "ValidacaoDTO\\UsuarioValidador.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-26T15:59:34.439Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Entidades\\Usuario.cs",
+              "RelativeDocumentMoniker": "..\\Dominio\\Entidades\\Usuario.cs",
+              "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Entidades\\Usuario.cs",
+              "RelativeToolTip": "..\\Dominio\\Entidades\\Usuario.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAQAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-25T18:35:08.065Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RepositorioException.cs",
+              "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Servicos\\RepositorioException.cs",
+              "RelativeDocumentMoniker": "..\\Dominio\\Servicos\\RepositorioException.cs",
+              "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Servicos\\RepositorioException.cs",
+              "RelativeToolTip": "..\\Dominio\\Servicos\\RepositorioException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBIAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-25T17:28:18.838Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ClienteValidadorTestes.cs",
+              "DocumentMoniker": "C:\\Projetos\\AlterData\\Testes\\Dominio\\ClienteValidadorTestes.cs",
+              "RelativeDocumentMoniker": "..\\Testes\\Dominio\\ClienteValidadorTestes.cs",
+              "ToolTip": "C:\\Projetos\\AlterData\\Testes\\Dominio\\ClienteValidadorTestes.cs",
+              "RelativeToolTip": "..\\Testes\\Dominio\\ClienteValidadorTestes.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-26T02:53:07.127Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PerfilUsuario.cs",
+              "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Enumeradores\\PerfilUsuario.cs",
+              "RelativeDocumentMoniker": "..\\Dominio\\Enumeradores\\PerfilUsuario.cs",
+              "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Enumeradores\\PerfilUsuario.cs",
+              "RelativeToolTip": "..\\Dominio\\Enumeradores\\PerfilUsuario.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAoAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-25T18:38:43.064Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "ContextoBancoDeDados.cs",
-              "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Servicos\\ContextoBancoDeDados.cs",
-              "RelativeDocumentMoniker": "..\\Dominio\\Servicos\\ContextoBancoDeDados.cs",
-              "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Servicos\\ContextoBancoDeDados.cs",
-              "RelativeToolTip": "..\\Dominio\\Servicos\\ContextoBancoDeDados.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Title": "UsuarioProfile.cs",
+              "DocumentMoniker": "C:\\Projetos\\AlterData\\API\\Mapeamento\\UsuarioProfile.cs",
+              "RelativeDocumentMoniker": "Mapeamento\\UsuarioProfile.cs",
+              "ToolTip": "C:\\Projetos\\AlterData\\API\\Mapeamento\\UsuarioProfile.cs",
+              "RelativeToolTip": "Mapeamento\\UsuarioProfile.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T18:55:39.909Z",
+              "WhenOpened": "2025-01-26T15:56:01.733Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 14,
               "Title": "Cliente.cs",
               "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Entidades\\Cliente.cs",
               "RelativeDocumentMoniker": "..\\Dominio\\Entidades\\Cliente.cs",
@@ -183,7 +264,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 19,
               "Title": "Produto.cs",
               "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Entidades\\Produto.cs",
               "RelativeDocumentMoniker": "..\\Dominio\\Entidades\\Produto.cs",
@@ -196,59 +277,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "PerfilUsuario.cs",
-              "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Enumeradores\\PerfilUsuario.cs",
-              "RelativeDocumentMoniker": "..\\Dominio\\Enumeradores\\PerfilUsuario.cs",
-              "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Enumeradores\\PerfilUsuario.cs",
-              "RelativeToolTip": "..\\Dominio\\Enumeradores\\PerfilUsuario.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAOAAAA",
+              "DocumentIndex": 10,
+              "Title": "ClienteValidador.cs",
+              "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Validacao\\ClienteValidador.cs",
+              "RelativeDocumentMoniker": "..\\Dominio\\Validacao\\ClienteValidador.cs",
+              "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Validacao\\ClienteValidador.cs",
+              "RelativeToolTip": "..\\Dominio\\Validacao\\ClienteValidador.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAgwAkAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T18:38:43.064Z",
+              "WhenOpened": "2025-01-26T02:57:59.036Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ContextoBancoDeDados.cs",
+              "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Servicos\\ContextoBancoDeDados.cs",
+              "RelativeDocumentMoniker": "..\\Dominio\\Servicos\\ContextoBancoDeDados.cs",
+              "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Servicos\\ContextoBancoDeDados.cs",
+              "RelativeToolTip": "..\\Dominio\\Servicos\\ContextoBancoDeDados.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-25T18:55:39.909Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Entidades\\Usuario.cs",
-              "RelativeDocumentMoniker": "..\\Dominio\\Entidades\\Usuario.cs",
-              "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Entidades\\Usuario.cs",
-              "RelativeToolTip": "..\\Dominio\\Entidades\\Usuario.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T18:35:08.065Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "RepositorioException.cs",
-              "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Servicos\\RepositorioException.cs",
-              "RelativeDocumentMoniker": "..\\Dominio\\Servicos\\RepositorioException.cs",
-              "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Servicos\\RepositorioException.cs",
-              "RelativeToolTip": "..\\Dominio\\Servicos\\RepositorioException.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T17:28:18.838Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RepositorioBase.cs",
-              "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Servicos\\RepositorioBase.cs",
-              "RelativeDocumentMoniker": "..\\Dominio\\Servicos\\RepositorioBase.cs",
-              "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Servicos\\RepositorioBase.cs",
-              "RelativeToolTip": "..\\Dominio\\Servicos\\RepositorioBase.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T12:58:14.264Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "ClienteProfile.cs",
               "DocumentMoniker": "C:\\Projetos\\AlterData\\API\\Mapeamento\\ClienteProfile.cs",
               "RelativeDocumentMoniker": "Mapeamento\\ClienteProfile.cs",
@@ -261,7 +316,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 16,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Projetos\\AlterData\\API\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Projetos\\AlterData\\API\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-01-25T19:10:02.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ClienteDTO.cs",
+              "DocumentMoniker": "C:\\Projetos\\AlterData\\API\\Models\\ClienteDTO.cs",
+              "RelativeDocumentMoniker": "Models\\ClienteDTO.cs",
+              "ToolTip": "C:\\Projetos\\AlterData\\API\\Models\\ClienteDTO.cs",
+              "RelativeToolTip": "Models\\ClienteDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAoAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-25T22:20:29.277Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "EntidadeBase.cs",
               "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Entidades\\EntidadeBase.cs",
               "RelativeDocumentMoniker": "..\\Dominio\\Entidades\\EntidadeBase.cs",
@@ -270,19 +351,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-25T13:03:43.717Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "IRepositorio.cs",
-              "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Interfaces\\IRepositorio.cs",
-              "RelativeDocumentMoniker": "..\\Dominio\\Interfaces\\IRepositorio.cs",
-              "ToolTip": "C:\\Projetos\\AlterData\\Dominio\\Interfaces\\IRepositorio.cs",
-              "RelativeToolTip": "..\\Dominio\\Interfaces\\IRepositorio.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAABHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T12:40:17.558Z",
               "EditorCaption": ""
             }
           ]

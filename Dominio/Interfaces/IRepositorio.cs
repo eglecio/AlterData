@@ -13,6 +13,7 @@ namespace Dominio.Interfaces {
     Task RemoverPorIdAsync(object id);
 
     // Métodos de Busca...
+    Task<T> ObterAsync(Expression<Func<T, bool>> filtro);
     Task<T> ObterPorIdAsync(object id);
     Task<IEnumerable<T>> BuscarAsync(Expression<Func<T, bool>> filtro);
     Task<IEnumerable<T>> BuscarPaginadoAsync(
