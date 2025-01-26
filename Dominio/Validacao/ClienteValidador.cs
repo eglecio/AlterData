@@ -2,7 +2,7 @@
 using FluentValidation;
 using System.Text.RegularExpressions;
 
-namespace API.Validacao {
+namespace Dominio.Validacao {
 
   public class ClienteValidador : AbstractValidator<Cliente> {
 

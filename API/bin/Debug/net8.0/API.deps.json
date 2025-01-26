@@ -611,6 +611,7 @@
       "System.Threading.Channels/6.0.0": {},
       "Dominio/1.0.0": {
         "dependencies": {
+          "FluentValidation": "11.11.0",
           "Microsoft.EntityFrameworkCore": "8.0.12",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.11"
         },

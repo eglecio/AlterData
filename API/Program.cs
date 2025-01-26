@@ -1,7 +1,7 @@
-using API.Validacao;
 using Dominio.Entidades;
 using Dominio.Interfaces;
 using Dominio.Servicos;
+using Dominio.Validacao;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
