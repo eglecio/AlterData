@@ -3,6 +3,7 @@ using AutoMapper;
 using Dominio.Entidades;
 using Dominio.Interfaces;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +11,6 @@ namespace API.Controllers {
   [ApiController]
   [Route("[controller]")]
   public class ClienteController : ControllerBase {
-    
     private readonly ILogger<Cliente> _logger;
     private readonly IMapper _mapper;
     private readonly IRepositorio<Cliente> _repositorio;
@@ -47,17 +47,17 @@ namespace API.Controllers {
 
 
 
-
-    //[HttpGet(Name = "GetWeatherForecast")]
-    //public IEnumerable<WeatherForecast> Get() {
-    //  //return Enumerable.Range(1, 5).Select(index => new WeatherForecast {
-    //  //  Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-    //  //  TemperatureC = Random.Shared.Next(-20, 55),
-    //  //  Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-    //  //})
-    //  //.ToArray();
-    //  return null;
-    //}
+    [Authorize(Roles = "Editor,Admin")]
+    [HttpGet(Name = "Listar")]
+    public async Task<IEnumerable<Cliente>> Get() {
+      return await _repositorio.BuscarAsync(x => x.Id > 0);
+      //return Enumerable.Range(1, 5).Select(index => new WeatherForecast {
+      //  Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+      //  TemperatureC = Random.Shared.Next(-20, 55),
+      //  Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+      //})
+      //.ToArray();
+    }
 
 
 

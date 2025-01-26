@@ -6,6 +6,6 @@ namespace Dominio.Entidades {
     public string Senha { get; set; }
     public PerfilUsuario Perfil { get; set; } = PerfilUsuario.Padrao;
     public DateTime DataCadastro { get; set; } = DateTime.Today;
-    public DateTime DataInativacao { get; set; } = DateTime.MaxValue;
+    public DateTime? DataInativacao { get; set; } = DateTime.MaxValue;
   }
 }

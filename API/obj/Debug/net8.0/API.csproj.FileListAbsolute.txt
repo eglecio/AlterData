@@ -115,3 +115,10 @@ C:\Projetos\AlterData\API\bin\Debug\net8.0\AutoMapper.dll
 C:\Projetos\AlterData\API\bin\Debug\net8.0\FluentValidation.dll
 C:\Projetos\AlterData\API\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 C:\Projetos\AlterData\API\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\Microsoft.Extensions.WebEncoders.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\System.Security.Cryptography.Xml.dll
+C:\Projetos\AlterData\API\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll

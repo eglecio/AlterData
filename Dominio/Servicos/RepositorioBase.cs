@@ -147,6 +147,19 @@ namespace Dominio.Servicos {
 
 
     #region #### Metodos de Pesquisa ####
+    public async Task<T> ObterAsync(Expression<Func<T, bool>> filtro) {
+      if (filtro == null)
+        throw new ArgumentNullException(nameof(filtro), "Filtro não pode ser nulo.");
+
+      try {
+        return await _dbSet.Where(filtro).FirstOrDefaultAsync();
+      }
+      catch (Exception ex) when (ex is not RepositorioException) {
+        LogarErro(ex);
+        throw new RepositorioException("Erro ao obter entidade por filtro.", ex);
+      }
+    }
+
     public async Task<T> ObterPorIdAsync(object id) {
       if (id == null)
         throw new ArgumentNullException(nameof(id), "Identificador não pode ser nulo.");

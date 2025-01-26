@@ -115,7 +115,7 @@ namespace Dominio.Migrations
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("DataInativacao")
+                    b.Property<DateTime?>("DataInativacao")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
