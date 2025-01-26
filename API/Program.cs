@@ -1,4 +1,3 @@
-using API.ValidacaoDTO;
 using Dominio.Entidades;
 using Dominio.Interfaces;
 using Dominio.Servicos;
@@ -55,7 +54,7 @@ builder.Services.AddScoped<IRepositorio<Usuario>, RepositorioBase<Usuario, Conte
 builder.Services.AddScoped<IRepositorio<Cliente>, RepositorioBase<Cliente, ContextoBancoDeDados>>();
 builder.Services.AddScoped<IRepositorio<Produto>, RepositorioBase<Produto, ContextoBancoDeDados>>();
 builder.Services.AddValidatorsFromAssemblyContaining<ClienteValidador>();
-builder.Services.AddValidatorsFromAssemblyContaining<UsuarioValidador>();
+builder.Services.AddValidatorsFromAssemblyContaining<UsuarioLoginDTOValidador>();
 
 
 var app = builder.Build();

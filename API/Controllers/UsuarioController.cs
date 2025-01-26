@@ -1,7 +1,7 @@
-﻿using API.Models;
-using AutoMapper;
+﻿using AutoMapper;
 using Dominio.Entidades;
 using Dominio.Interfaces;
+using Dominio.ModelosDTO;
 using Dominio.Servicos;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.BearerToken;
