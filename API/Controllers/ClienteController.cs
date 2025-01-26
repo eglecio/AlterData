@@ -113,6 +113,9 @@ namespace API.Controllers {
     [HttpGet("{termo}/{pagina}/{totalPorPagina}")]
     public async Task<ActionResult<IEnumerable<Cliente>>> Get(string termo, int pagina = 1, int totalPorPagina = 10) {
       try {
+        if (string.IsNullOrEmpty(termo)) { 
+          // TODO: parado aqui. preciso ajustar para nao pegar os DELETADOS e IGNORAR CASO O TERMO SEJA VAZIO...
+        }
         var clientes = await _repositorio.BuscarAsync(x =>
             EF.Functions.ILike(x.Nome, $"%{termo}%") ||
             EF.Functions.ILike(x.Email, $"%{termo}%") ||
