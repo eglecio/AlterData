@@ -113,16 +113,17 @@ namespace API.Controllers {
     [HttpGet("{termo}/{pagina}/{totalPorPagina}")]
     public async Task<ActionResult<IEnumerable<Cliente>>> Get(string termo, int pagina = 1, int totalPorPagina = 10) {
       try {
-        if (string.IsNullOrEmpty(termo)) { 
-          // TODO: parado aqui. preciso ajustar para nao pegar os DELETADOS e IGNORAR CASO O TERMO SEJA VAZIO...
+        IEnumerable<Cliente> clientes;
+        if (!string.IsNullOrEmpty(termo.Trim())) {
+          clientes = await _repositorio.BuscarPaginadoAsync(x => !x.Excluido &&
+            (EF.Functions.ILike(x.Nome, $"%{termo}%") ||
+             EF.Functions.ILike(x.Email, $"%{termo}%") ||
+             EF.Functions.ILike(x.Telefone, $"%{termo}%")
+            ), pagina, totalPorPagina, z => z.Id);
         }
-        var clientes = await _repositorio.BuscarAsync(x =>
-            EF.Functions.ILike(x.Nome, $"%{termo}%") ||
-            EF.Functions.ILike(x.Email, $"%{termo}%") ||
-            EF.Functions.ILike(x.Telefone, $"%{termo}%"));
-
-        if (!clientes.Any())
-          return NoContent();
+        else {
+          clientes = await _repositorio.BuscarPaginadoAsync(x => !x.Excluido, pagina, totalPorPagina, z => z.Id);
+        }
 
         return Ok(clientes
            .Skip((pagina - 1) * totalPorPagina)
