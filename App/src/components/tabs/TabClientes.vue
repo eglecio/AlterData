@@ -49,7 +49,7 @@
                       <q-item-label caption lines="2">
                         <span class="text-black">
                           <i class="fa-regular fa-id-card text-black" style="font-size: 15px;"></i>
-                          {{ cliente.cpf }}
+                          {{ formatarCpf(cliente.cpf) }}
                         </span>
                       </q-item-label>
                     </q-item-section>
@@ -62,7 +62,7 @@
                       <q-item-label caption lines="2">
                         <span class="text-black">
                           <i class="fa-solid fa-phone text-black"></i>
-                          {{ cliente.telefone }}
+                          {{ formatarTelefone(cliente.telefone) }}
                         </span>
                       </q-item-label>
                     </q-item-section>
@@ -137,7 +137,6 @@
         <q-card-section class="row items-center">
           <q-avatar icon="fas fa-user-slash" color="primary" text-color="white" />
           <span class="q-ml-sm text-justify q-pt-md">Deseja realmente remover o cliente "{{ clienteNome_ParaRemover }}"?</span>
-          <!-- <span class="q-ml-sm q-mt-md text-justify"><small>Sua  cliente não deixará de ter acesso ao app, apenas reduzirá a quantidade de clientes ativos em sua assinatura. Caso seu cliente desabilitado acesse novamente ele será reativado automaticamente.</small></span> -->
         </q-card-section>
 
         <q-card-actions align="right">
@@ -193,7 +192,6 @@ const atributos_cliente = [
   },
 ];
 
-
 export default defineComponent({
   name: 'TabClientes',
 
@@ -235,6 +233,16 @@ export default defineComponent({
   },
 
   methods: {
+
+    formatarCpf (cpf) {
+      cpf = cpf.replace(/[^\d]/g, "")//retira os caracteres indesejados...
+      return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')
+    },
+
+    formatarTelefone (telefone) {
+      telefone = telefone.replace(/[^\d]/g, "")//retira os caracteres indesejados...
+      return telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3')
+    },
 
     async carregarCliente (cliente) {
       var instance = this
@@ -314,9 +322,8 @@ export default defineComponent({
       this.clientes = []
     },
 
-// TODO: criar o metodo editar e o remover, recebendo o objeto cliente (chamar rota para o editar e o remover abrir um modal de confirmação)
-    async editar (cliente) {
-      console.log('editar', cliente)
+    editar (cliente) {
+      this.$router.push(`/cliente/${cliente.id}`)
     },
 
     remover (cliente) {

@@ -42,8 +42,14 @@ namespace API.Controllers {
       if (!validacao.IsValid)
         return BadRequest(validacao.Errors);
 
-      await _repositorio.AdicionarAsync(entidade);
-
+      try {
+        await _repositorio.AdicionarAsync(entidade);
+      }
+      catch (Exception ex) {
+        _logger.LogError($"Add cliente: {ex.Message + " - inner execption: " + ex.InnerException}");
+        return Problem();
+      }
+      
       return Ok(entidade.Id);
     }
     // </snippet_Create>
@@ -52,7 +58,7 @@ namespace API.Controllers {
     // <snippet_Create>
     [HttpPut]
     [Authorize(Roles = "Editor,Admin")]
-    public async Task<ActionResult<ClienteDTO>> Update(ClienteDTO modelo) {
+    public async Task<IActionResult> Update(ClienteDTO modelo) {
       try {
         var clienteExistente = await _repositorio.ObterPorIdAsync(modelo.Id);
         _mapper.Map(modelo, clienteExistente);// Mapea propriedades, ignorando DataCadastro e ID...
@@ -111,7 +117,7 @@ namespace API.Controllers {
     // <snippet_Create>
     [Authorize(Roles = "Usuario,Editor,Admin")]
     [HttpGet("{pagina}/{totalPorPagina}/{termo?}")]
-    public async Task<ActionResult<IEnumerable<Cliente>>> Get(int pagina = 1, int totalPorPagina = 10, string termo = "") {
+    public async Task<ActionResult<IEnumerable<ClienteListagemDTO>>> Get(int pagina = 1, int totalPorPagina = 10, string termo = "") {
       try {
         IEnumerable<Cliente> clientes;
         if (!string.IsNullOrEmpty(termo.Trim())) {
@@ -125,8 +131,8 @@ namespace API.Controllers {
           clientes = await _repositorio.BuscarPaginadoAsync(x => !x.Excluido, pagina, totalPorPagina, z => z.Id);
         }
 
+        // para testr a paginacao infinita...
         //List<Cliente> gambiarra = new();
-
         //for (var i = 0; i < 50; i++) {
         //  gambiarra.AddRange(clientes);
         //}

@@ -1,4 +1,5 @@
 ﻿using Dominio.Entidades;
+using Dominio.Helper;
 using FluentValidation;
 
 namespace Dominio.Validacao {
@@ -13,37 +14,15 @@ namespace Dominio.Validacao {
           .MaximumLength(150).WithMessage("Nome deve ter no máximo 150 caracteres");
 
       RuleFor(x => x.CPF)
-          .Must(ValidarCPF).WithMessage("CPF inválido")
-          .NotEmpty().WithMessage("CPF é obrigatório");
+          .NotEmpty().WithMessage("CPF é obrigatório")
+          .Must(cpf => cpf == null || cpf.All(c => char.IsDigit(c) || c == '.' || c == '-'))
+              .WithMessage("CPF deve conter apenas números, pontos e hífen")
+          .Must(cpf => cpf == null || HelperCpf.Validar(cpf))
+              .WithMessage("CPF inválido");
 
       RuleFor(x => x.Email)
           .NotEmpty().WithMessage("Email é obrigatório")
           .EmailAddress().WithMessage("Email inválido");
-    }
-
-    private bool ValidarCPF(string cpf) {
-      // Remover caracteres não numéricos
-      cpf = new string(cpf.Where(char.IsDigit).ToArray());
-
-      // Validar se tem 11 dígitos
-      if (cpf.Length != 11)
-        return false;
-
-      // Validar dígitos verificadores
-      int soma1 = 0, soma2 = 0;
-      for (int i = 0; i < 9; i++) {
-        soma1 += int.Parse(cpf[i].ToString()) * (10 - i);
-        soma2 += int.Parse(cpf[i].ToString()) * (11 - i);
-      }
-
-      int digito1 = 11 - (soma1 % 11);
-      digito1 = digito1 >= 10 ? 0 : digito1;
-
-      soma2 += digito1 * 2;
-      int digito2 = 11 - (soma2 % 11);
-      digito2 = digito2 >= 10 ? 0 : digito2;
-
-      return cpf.EndsWith(digito1.ToString() + digito2.ToString());
     }
   }
 }

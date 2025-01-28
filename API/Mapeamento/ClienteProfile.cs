@@ -7,6 +7,9 @@ namespace API.Mapeamento {
     public ClienteProfile() {
       CreateMap<Cliente, ClienteDTO>();
       CreateMap<ClienteDTO, Cliente>()
+            .ForMember(d => d.Endereco, o => o.MapFrom(p => p.Endereco ?? ""))
+            .ForMember(d => d.Telefone, o => o.MapFrom(p => p.Telefone ?? ""))
+            .ForMember(d => d.Observacao, o => o.MapFrom(p => p.Observacao ?? ""))
             .ForMember(d => d.DataCadastro, opt => opt.Ignore())
             .ForMember(d => d.Id, opt => opt.Ignore());
 

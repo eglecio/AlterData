@@ -41,6 +41,7 @@ namespace Testes.Dominio {
     [InlineData("852.741.963-19")]
     [InlineData("456.123.789-89")]
     [InlineData("741.852.963-56")]
+    [InlineData("009.261.539-27Das")]
     public void CPF_Invalido_DeveFalhar(string cpf) {
       var cliente = new Cliente {
         Nome = "Teste",

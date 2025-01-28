@@ -15,6 +15,7 @@ namespace Dominio.Servicos {
     public DbSet<Produto> Produtos { get; set; }
 
     public ContextoBancoDeDados(DbContextOptions<ContextoBancoDeDados> options) : base(options) {
+      AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
