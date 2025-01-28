@@ -110,8 +110,8 @@ namespace API.Controllers {
     // GET: cliente
     // <snippet_Create>
     [Authorize(Roles = "Usuario,Editor,Admin")]
-    [HttpGet("{termo}/{pagina}/{totalPorPagina}")]
-    public async Task<ActionResult<IEnumerable<Cliente>>> Get(string termo, int pagina = 1, int totalPorPagina = 10) {
+    [HttpGet("{pagina}/{totalPorPagina}/{termo?}")]
+    public async Task<ActionResult<IEnumerable<Cliente>>> Get(int pagina = 1, int totalPorPagina = 10, string termo = "") {
       try {
         IEnumerable<Cliente> clientes;
         if (!string.IsNullOrEmpty(termo.Trim())) {
@@ -125,9 +125,16 @@ namespace API.Controllers {
           clientes = await _repositorio.BuscarPaginadoAsync(x => !x.Excluido, pagina, totalPorPagina, z => z.Id);
         }
 
-        return Ok(clientes
+        //List<Cliente> gambiarra = new();
+
+        //for (var i = 0; i < 50; i++) {
+        //  gambiarra.AddRange(clientes);
+        //}
+        //clientes = gambiarra;
+
+        return Ok(_mapper.Map<List<ClienteListagemDTO>>(clientes
            .Skip((pagina - 1) * totalPorPagina)
-           .Take(totalPorPagina));
+           .Take(totalPorPagina).ToList()));
       }
       catch (RepositorioException) {
         return NotFound();

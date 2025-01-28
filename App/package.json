@@ -1,0 +1,47 @@
+{
+  "name": "alterdata.desafio.admin",
+  "version": "0.0.1",
+  "description": "Área administrativa",
+  "productName": "Admin",
+  "author": "Eglecio A. Pereira <eglecio@hotmail.com>",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js,.vue ./",
+    "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
+    "test": "echo \"No test specified\" && exit 0",
+    "dev": "quasar dev",
+    "build": "quasar build"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.0.0",
+    "@quasar/quasar-ui-qcalendar": "^4.0.0-beta.15",
+    "axios": "^0.21.1",
+    "echarts": "^5.4.1",
+    "pinia": "^2.0.11",
+    "quasar": "^2.6.0",
+    "vue": "^3.0.0",
+    "vue-echarts": "^6.5.4",
+    "vue-i18n": "^9.0.0",
+    "vue-router": "^4.0.0",
+    "vuedraggable": "^2.24.3"
+  },
+  "devDependencies": {
+    "@intlify/vite-plugin-vue-i18n": "^3.3.1",
+    "@quasar/app-vite": "^1.0.0",
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.14",
+    "quasar-app-extension-qhierarchy": "^1.0.9",
+    "workbox-build": "^6.6.0",
+    "workbox-cacheable-response": "^6.6.0",
+    "workbox-core": "^6.6.0",
+    "workbox-expiration": "^6.6.0",
+    "workbox-precaching": "^6.6.0",
+    "workbox-routing": "^6.6.0",
+    "workbox-strategies": "^6.6.0"
+  },
+  "engines": {
+    "node": "^18 || ^16 || ^14.19",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}
