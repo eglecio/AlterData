@@ -87,15 +87,35 @@ namespace Testes.Controladores {
     [InlineData(1, 10, "")]
     [InlineData(1, 12, " ")]
     public async Task Get_QuandoExistemClientes_DeveRetornarPaginado(int pagina, int totalPorPagina, string termo) {
-      var clientes = _fixture.Build<Cliente>().With(a => a.Excluido, false).CreateMany(15).ToList();
-      _repositorio.Setup(r => r.BuscarPaginadoAsync(It.IsAny<Expression<Func<Cliente, bool>>>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<Expression<Func<Cliente, object>>?>()))
-        .ReturnsAsync(clientes);
+      var clientes = _fixture.Build<Cliente>()
+          .With(a => a.Nome, "Teste da Silva")
+          .With(a => a.Excluido, false)
+          .With(a => a.Email, "teste@teste.com")
+          .With(a => a.CPF, "761.611.196-33")
+          .CreateMany(totalPorPagina)
+          .ToList();
+
+      var clientesDTO = clientes.Select(c => new ClienteListagemDTO {
+        Id = c.Id,
+        Nome = c.Nome,
+        Email = c.Email,
+        CPF = c.CPF
+      }).ToList();
+
+      _repositorio.Setup(r => r.BuscarPaginadoAsync(
+          It.IsAny<Expression<Func<Cliente, bool>>>(),
+          It.IsAny<int>(),
+          It.IsAny<int>(),
+          It.IsAny<Expression<Func<Cliente, object>>?>()))
+          .ReturnsAsync(clientes);
+
+      _mapper.Setup(m => m.Map<List<ClienteListagemDTO>>(It.IsAny<List<Cliente>>())).Returns(clientesDTO);
+
 
       var resultado = await _controller.Get(pagina, totalPorPagina, termo);
-
       var okResult = Assert.IsType<OkObjectResult>(resultado.Result);
-      var clientesRetornados = Assert.IsAssignableFrom<IEnumerable<Cliente>>(okResult.Value);
-      Assert.Equal(totalPorPagina, clientesRetornados.Count());
+      var clientesRetornados = Assert.IsAssignableFrom<List<ClienteListagemDTO>>(okResult.Value);
+      Assert.Equal(totalPorPagina, clientesRetornados.Count);
     }
 
     [Fact]

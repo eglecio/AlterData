@@ -5,6 +5,7 @@ const routes = [
     children: [
       {path: '', component: () => import('pages/Dashboard.vue')},
       {path: '/Clientes', component: () => import('src/pages/Clientes.vue'), meta: { titulo: 'Clientes' }},
+      {path: '/Cliente/:id?', component: () => import('src/pages/Cliente.vue')},
       {path: '/Dashboard2', component: () => import('pages/Dashboard2.vue')},
       {path: '/Mensagens', component: () => import('pages/Mensagem.vue'), meta: { titulo: 'Notificações' }},
       {path: '/Profile', component: () => import('pages/UserProfile.vue')},

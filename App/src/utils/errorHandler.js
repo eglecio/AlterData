@@ -1,8 +1,7 @@
 import { Notify } from 'quasar'
 
 export const handleAxiosError = (error, customConfig = {}) => {
-  // Se não há resposta, provavelmente é um erro de conexão
-  if (!error.response) {
+  if (!error.response) {  // Se não há resposta, provavelmente é um erro de conexão
     // console.log('Erro sem resposta detectado')
     Notify.create({
       type: 'negative',
@@ -48,7 +47,10 @@ export const handleAxiosError = (error, customConfig = {}) => {
   const mensagemPadrao = 'Ocorreu um erro inesperado.'
   const mensagem = mensagensDeErro[status] || mensagemPadrao
 
-  // console.log('Mensagem de erro a ser exibida:', mensagem)
+  if (status === 401) { // TODO: ajustar para sempre que for acesso nao autorizado efeutar novamente login...
+    router.push('/Login')
+    return Promise.reject(new Error('Sessão expirada'))
+  }
 
   Notify.create({
     type: 'negative',

@@ -1,33 +1,18 @@
 <template>
   <q-page class="q-pa-sm">
+
     <tab-Clientes v-if="exibirListagemClientes"/>
-
-    <q-dialog v-model="confirmacaoDesabilitarClientes" persistent>
-      <q-card>
-        <q-card-section class="row items-center">
-          <q-avatar icon="fas fa-users-slash" color="primary" text-color="white" />
-          <span class="q-ml-sm text-justify">Desabilitar todos os clientes que não acessaram o app nos últimos 30 dias?</span>
-          <span class="q-ml-sm q-mt-md text-justify"><small>Seu cliente não deixará de ter acesso ao app, apenas reduzirá a quantidade de clientes ativos em sua assinatura. Caso seu cliente desabilitado acesse novamente ele será reativado automaticamente.</small></span>
-        </q-card-section>
-
-        <q-card-actions align="right">
-          <q-btn flat label="Cancelar" color="primary" v-close-popup @click="confirmacaoDesabilitarClientes = false" />
-          <q-btn label="Sim, quero desabilitar" dense color="teal" v-close-popup @click="desabilitarTodos" />
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
 
     <q-footer elevated>
       <q-toolbar class="row">
-        <!-- <q-toolbar-title>Footer</q-toolbar-title> -->
-        <!-- <q-btn
-          color="teal"
-          dense
-          class="col-10 offset-1"
-          label="Desabilitar clientes que não acessam"
-          @click="confirmacaoDesabilitarClientes = true"
-          >
-        </q-btn> -->
+        <q-btn
+          fab
+          color="teal-7"
+          icon="fas fa-plus" padding="sm"
+          class="absolute"
+          style="top: 0; right: 12px; transform: translateY(-50%);"
+          to="/cliente/novo"
+        />
       </q-toolbar>
     </q-footer>
   </q-page>
@@ -46,7 +31,6 @@ export default defineComponent({
 
   data () {
     return {
-      confirmacaoDesabilitarClientes: false,
       exibirListagemClientes: true
     }
   },
