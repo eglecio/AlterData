@@ -74,7 +74,7 @@ namespace API.Controllers {
 
     // DELETE: cliente
     // <snippet_Create>
-    [HttpDelete]
+    [HttpDelete("{clienteId}")]
     [Authorize(Roles = "Editor,Admin")]
     public async Task<ActionResult<ClienteDTO>> Delete(int clienteId) {
       try {
@@ -97,7 +97,7 @@ namespace API.Controllers {
     public async Task<ActionResult<ClienteDTO>> Get(int clienteId) {
       try {
         var cliente = await _repositorio.ObterPorIdAsync(clienteId);
-        var modelo = _mapper.Map<ClienteDTO>(cliente);
+        var modelo = _mapper.Map<ClienteVisualizacaoDTO>(cliente);
         return Ok(modelo);
       }
       catch (RepositorioException) {

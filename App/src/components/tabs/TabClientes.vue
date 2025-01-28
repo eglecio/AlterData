@@ -41,7 +41,7 @@
                     style="margin-bottom: 2px; border-bottom: 2px solid #D4D4D4; padding: 10px !important; padding-top: 15px !important; padding-bottom: 12px ;"
                   >
 
-                    <q-item-section @click="cliente_selecionado=cliente">
+                    <q-item-section @click="carregarCliente(cliente)">
                       <q-item-label lines="1" class="q-pb-xs">
                         <i class="fa-solid fa-circle-user text-black" style="font-size: 16px;"></i>
                         {{ cliente.nome }}
@@ -54,7 +54,7 @@
                       </q-item-label>
                     </q-item-section>
 
-                    <q-item-section @click="cliente_selecionado=cliente">
+                    <q-item-section @click="carregarCliente(cliente)">
                       <q-item-label lines="1" class="q-pb-xs">
                         <i class="fa-regular fa-envelope text-black" style="font-size: 15px;"></i>
                         {{ cliente.email }}
@@ -130,6 +130,22 @@
 
         </q-card>
   </transition>
+
+  <!-- confirmacao de remocao de cliente -->
+  <q-dialog v-model="confirmacaoRemoverCliente" persistent>
+      <q-card>
+        <q-card-section class="row items-center">
+          <q-avatar icon="fas fa-user-slash" color="primary" text-color="white" />
+          <span class="q-ml-sm text-justify q-pt-md">Deseja realmente remover o cliente "{{ clienteNome_ParaRemover }}"?</span>
+          <!-- <span class="q-ml-sm q-mt-md text-justify"><small>Sua  cliente não deixará de ter acesso ao app, apenas reduzirá a quantidade de clientes ativos em sua assinatura. Caso seu cliente desabilitado acesse novamente ele será reativado automaticamente.</small></span> -->
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="Cancelar" color="primary" v-close-popup @click="confirmacaoRemoverCliente = false" />
+          <q-btn label="Sim, quero remover" dense color="teal" v-close-popup @click="_executarRemover" />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
 </template>
 
 <script>
@@ -158,7 +174,7 @@ const atributos_cliente = [
     text_color: 'grey-8'
   },
   {
-    icon: 'fab fa-instagram',
+    icon: 'fa-solid fa-map-location-dot',
     label: 'Endereço',
     field: 'endereco',
     text_color: 'grey-8'
@@ -194,6 +210,9 @@ export default defineComponent({
     const ultimaPesquisa = ref('');
     const scrollTargetRef = ref(null)
     const alturaScroll = document.documentElement.clientHeight - 200
+    const confirmacaoRemoverCliente = ref(false)
+    const clienteId_ParaRemover = ref(0)
+    const clienteNome_ParaRemover = ref('')
 
     const $q = useQuasar()
     const size = ref({ width: '200px', height: '200px' });
@@ -208,11 +227,31 @@ export default defineComponent({
       alturaScroll,
       cliente_selecionado: ref({}),
       size,
-      atributos_cliente
+      atributos_cliente,
+      confirmacaoRemoverCliente,
+      clienteId_ParaRemover,
+      clienteNome_ParaRemover
     }
   },
 
   methods: {
+
+    async carregarCliente (cliente) {
+      var instance = this
+      Loading.show({ spinner: QSpinnerGears })
+
+      try {
+        const response = await api.get(`cliente/${cliente.id}`)
+        if (response.data) {
+          instance.cliente_selecionado = response.data
+        }
+      } catch (error) {
+        console.log(error)
+      }
+      finally {
+        Loading.hide()
+      }
+    },
 
     async obterDados (index, done) {
       var instance = this
@@ -227,7 +266,9 @@ export default defineComponent({
             if (possuiRegistros === false) {
               instance.$refs.infinteScrollRef.stop()
             }
-            done()// usado pra desaparecer o spinner...
+            if (typeof done === "function") {
+              done() // usado pra desaparecer o spinner...
+            }
           }, index < 5 ? 1000 : 400)
         }
 
@@ -274,7 +315,48 @@ export default defineComponent({
     },
 
 // TODO: criar o metodo editar e o remover, recebendo o objeto cliente (chamar rota para o editar e o remover abrir um modal de confirmação)
-// TODO: Ajustar a visualizacao, nao trazer junto da listagem campos que sao da visualizacao, usar o metodo correto para evitar trafego...
+    async editar (cliente) {
+      console.log('editar', cliente)
+    },
+
+    remover (cliente) {
+      this.clienteId_ParaRemover = cliente.id
+      this.clienteNome_ParaRemover = cliente.nome
+      this.confirmacaoRemoverCliente = true
+    },
+
+    async _executarRemover () {
+      var instance = this
+      Loading.show({ spinner: QSpinnerGears })
+
+      try {
+        const response = await api.delete(`cliente/${instance.clienteId_ParaRemover}`)
+        if (response.status === 200) {
+          Notify.create({
+            message: `Cliente removido com sucesso`,
+            color: 'positive',
+            icon: 'check',
+            position: 'center',
+            timeout: 2500
+          })
+          instance.clientes = []
+          instance.obterDados(1)
+        } else {
+          Notify.create({
+            message: 'Não foi possível remover o cliente, tente novamente...',
+            color: 'negative',
+            icon: 'warning',
+            position: 'center',
+            timeout: 2500
+          })
+        }
+      } catch (error) {
+        console.log(error)
+      }
+      finally {
+        Loading.hide()
+      }
+    },
 
     async atualizarStatus (cliente) {
       Loading.show({ spinner: QSpinnerGears })
