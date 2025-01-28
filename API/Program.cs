@@ -10,6 +10,16 @@ using System.Diagnostics.Metrics;
 using System.Reflection.Metadata;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors(options => {
+  options.AddPolicy("AllowAll",
+      builder => {
+        builder
+          .AllowAnyOrigin() // Permite qualquer origem
+          .AllowAnyMethod() // Permite qualquer método HTTP (GET, POST, etc)
+          .AllowAnyHeader(); // Permite qualquer cabeçalho
+      });
+});
+
 
 // Add services to the container.
 
@@ -70,5 +80,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("AllowAll");
 
 app.Run();

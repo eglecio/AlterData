@@ -83,15 +83,15 @@ namespace Testes.Controladores {
     }
 
     [Theory]
-    [InlineData("teste", 1, 10)]
-    [InlineData("", 1, 10)]
-    [InlineData(" ", 1, 12)]
-    public async Task Get_QuandoExistemClientes_DeveRetornarPaginado(string termo, int pagina, int totalPorPagina) {
+    [InlineData(1, 10, "teste")]
+    [InlineData(1, 10, "")]
+    [InlineData(1, 12, " ")]
+    public async Task Get_QuandoExistemClientes_DeveRetornarPaginado(int pagina, int totalPorPagina, string termo) {
       var clientes = _fixture.Build<Cliente>().With(a => a.Excluido, false).CreateMany(15).ToList();
       _repositorio.Setup(r => r.BuscarPaginadoAsync(It.IsAny<Expression<Func<Cliente, bool>>>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<Expression<Func<Cliente, object>>?>()))
         .ReturnsAsync(clientes);
 
-      var resultado = await _controller.Get(termo, pagina, totalPorPagina);
+      var resultado = await _controller.Get(pagina, totalPorPagina, termo);
 
       var okResult = Assert.IsType<OkObjectResult>(resultado.Result);
       var clientesRetornados = Assert.IsAssignableFrom<IEnumerable<Cliente>>(okResult.Value);

@@ -9,6 +9,9 @@ namespace API.Mapeamento {
       CreateMap<ClienteDTO, Cliente>()
             .ForMember(d => d.DataCadastro, opt => opt.Ignore())
             .ForMember(d => d.Id, opt => opt.Ignore());
+
+      CreateMap<Cliente, ClienteListagemDTO>()
+        .ForMember(d => d.DataCadastro, o => o.MapFrom(p => p.DataCadastro.ToString("dd/MM/yyyy")));
     }
   }
 }
