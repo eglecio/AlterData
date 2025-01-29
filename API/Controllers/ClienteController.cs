@@ -58,7 +58,7 @@ namespace API.Controllers {
     // <snippet_Create>
     [HttpPut]
     [Authorize(Roles = "Editor,Admin")]
-    public async Task<IActionResult> Update(ClienteDTO modelo) {
+    public async Task<ActionResult<ClienteDTO>> Update(ClienteDTO modelo) {
       try {
         var clienteExistente = await _repositorio.ObterPorIdAsync(modelo.Id);
         _mapper.Map(modelo, clienteExistente);// Mapea propriedades, ignorando DataCadastro e ID...

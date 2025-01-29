@@ -78,6 +78,15 @@
           </q-item-section>
         </q-item>
 
+        <q-item to="/usuarios" active-class="q-item-no-link-highlighting">
+          <q-item-section avatar>
+            <q-icon name="fas fa-regular fa-users-gear"/>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Usuários</q-item-label>
+          </q-item-section>
+        </q-item>
+
         <q-item to="/" @click="logoff" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
             <q-icon name="exit_to_app"/>
