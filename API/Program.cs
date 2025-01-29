@@ -14,7 +14,7 @@ builder.Services.AddCors(options => {
   options.AddPolicy("AllowAll",
       builder => {
         builder
-          .AllowAnyOrigin() // Permite qualquer origem
+          .AllowAnyOrigin()
           .AllowAnyMethod() // Permite qualquer método HTTP (GET, POST, etc)
           .AllowAnyHeader(); // Permite qualquer cabeçalho
       });
@@ -65,6 +65,7 @@ builder.Services.AddScoped<IRepositorio<Cliente>, RepositorioBase<Cliente, Conte
 builder.Services.AddScoped<IRepositorio<Produto>, RepositorioBase<Produto, ContextoBancoDeDados>>();
 builder.Services.AddValidatorsFromAssemblyContaining<ClienteValidador>();
 builder.Services.AddValidatorsFromAssemblyContaining<UsuarioLoginDTOValidador>();
+builder.Services.AddValidatorsFromAssemblyContaining<UsuarioValidador>();
 
 
 var app = builder.Build();

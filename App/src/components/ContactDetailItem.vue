@@ -5,7 +5,7 @@
     </q-item-section>
 
     <q-item-section>
-      <q-item-label lines="1">{{ formatarCampo() }}</q-item-label>
+      <q-item-label :lines="`${expand ? auto : 1}`">{{ formatarCampo() }}</q-item-label>
       <q-item-label caption class="text-grey-8">{{ label }}</q-item-label>
     </q-item-section>
 
@@ -17,7 +17,7 @@ import {defineComponent} from 'vue';
 
 export default defineComponent({
   name: "ContactDetailItem",
-  props: ['icon', 'text_color', 'value', 'label'],
+  props: ['icon', 'text_color', 'value', 'label', 'expand'],
 
   methods: {
     formatarCpf (cpf) {

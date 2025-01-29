@@ -79,6 +79,19 @@ namespace API.Controllers {
     // </snippet_Create>
 
 
+
+    // POST: usuario/validarToken
+    // <snippet_Create>
+    [HttpGet]
+    [Route("validarToken")]
+    public ActionResult<bool> ValidarToken() {
+      // Necessario essa validacao extra, pois infelizmente no interceptador do axios esta dando erro de rede quando recebe http 401 entre outros codigos de retorno...
+      return Ok(User?.Identity?.IsAuthenticated ?? false);
+    }
+    // </snippet_Create>
+
+
+
     // POST: usuario
     // <snippet_Create>
     [HttpPost]
@@ -189,6 +202,7 @@ namespace API.Controllers {
     // <snippet_Create>
     [Authorize(Roles = "Admin")]
     [HttpGet("{pagina}/{totalPorPagina}/{termo?}")]
+    //[HttpGet("{pagina}/{totalPorPagina}")]
     public async Task<ActionResult<IEnumerable<UsuarioListagemDTO>>> Get(int pagina = 1, int totalPorPagina = 10, string termo = "") {
       try {
         var usuarioLogadoId = int.Parse(User.FindFirst("Id")?.Value ?? "0");// removo da listagem, para evitar que ele cometa erros com o seu proprio usuario...

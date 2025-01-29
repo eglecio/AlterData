@@ -1,8 +1,22 @@
-import { Notify } from 'quasar'
+import { Notify, LocalStorage } from 'quasar'
+import { api } from 'src/boot/axios';
+import router from 'src/router'
 
 export const handleAxiosError = (error, customConfig = {}) => {
-  if (!error.response) {  // Se não há resposta, provavelmente é um erro de conexão
-    // console.log('Erro sem resposta detectado')
+
+  const efetuarLogoutSessaoExpirada = () => {
+    Notify.create({
+      type: 'negative',
+      message: 'Sessão expirada. Por favor, faça login novamente.',
+      position: 'center',
+      timeout: 3000
+    })
+    localStorage.removeItem('token')
+    router.push('/login')
+    return
+  }
+
+  const erroDeConexao = () => {
     Notify.create({
       type: 'negative',
       message: 'Erro de conexão. Verifique sua internet.',
@@ -13,8 +27,39 @@ export const handleAxiosError = (error, customConfig = {}) => {
     return
   }
 
+  // Primeiro, verificamos explicitamente se é um erro 401
+  if (error.response?.status === 401) {
+    efetuarLogoutSessaoExpirada()
+    return Promise.reject(error)
+  }
+
+  if (!error.response) {  // Provavel erro de conexão...
+    const token = localStorage.getItem('token')
+    if (!token) {
+      router.push('/login')
+      return
+    }
+    // // Efetuo uma chamada para metodo de validacao de TOKEN EXPIRADO. Nao esta tratando o erro 401 e outros de forma correta, sempre ta caindo aqui,
+    // // entao vou valido se o token ainda eh valido no WS e senao for eu retorno para o login...
+    // api.get('usuario/validarToken', { headers: { Authorization: `Bearer ${token}` } })
+    //   .then(response => {
+    //     // Se a validação for bem sucedida e retornar false, entao a sessão expirou...
+    //     if (response.data === false) {
+    //       efetuarLogoutSessaoExpirada()
+    //       return
+    //     }
+
+    //     erroDeConexao()
+    //   })
+    //   .catch(() => {
+    //     erroDeConexao()
+    //   })
+    // efetuarLogoutSessaoExpirada()
+    erroDeConexao()
+    return
+  }
+
   const { status, data } = error.response
-  // console.log('Status:', status, 'Data:', data)
 
   // Se recebemos uma lista de erros de validação
   if (data && Array.isArray(data)) {
@@ -47,11 +92,6 @@ export const handleAxiosError = (error, customConfig = {}) => {
   const mensagemPadrao = 'Ocorreu um erro inesperado.'
   const mensagem = mensagensDeErro[status] || mensagemPadrao
 
-  if (status === 401) { // TODO: ajustar para sempre que for acesso nao autorizado efeutar novamente login...
-    router.push('/Login')
-    return Promise.reject(new Error('Sessão expirada'))
-  }
-
   Notify.create({
     type: 'negative',
     message: mensagem,
@@ -61,11 +101,30 @@ export const handleAxiosError = (error, customConfig = {}) => {
   })
 }
 
-// Configuração global do Axios
+// Configuração global do Axios com interceptadores...
 export const setupAxiosInterceptors = (axios) => {
+  axios.interceptors.request.use(
+    config => {
+      const token = LocalStorage.getItem('token')
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`
+      }
+      return config
+    },
+    error => Promise.reject(error)
+  )
+
+  // Interceptador de resposta modificado para debug se precisar...
   axios.interceptors.response.use(
     response => response,
     error => {
+      // // #### Log para debug ####
+      // console.log('Axios interceptor error:', {
+      //   status: error.response?.status,
+      //   data: error.response?.data,
+      //   error: error
+      // });
+
       handleAxiosError(error)
       return Promise.reject(error)
     }

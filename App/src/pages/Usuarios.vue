@@ -102,7 +102,7 @@
                     <span class="text-weight-bold">{{ usuario_selecionado.dataCadastro }}</span>
                   </q-item-label>
                   <q-item-label caption lines="1">
-                    <q-badge v-if="!usuario_selecionado.excluido" color="blue" text-color="white" label="Ativo" />
+                    <q-badge v-if="usuario_selecionado.status === 1" color="blue" text-color="white" label="Ativo" />
                     <q-badge v-else color="red" text-color="white" label="Inativo" />
                   </q-item-label>
                 </q-item-section>
