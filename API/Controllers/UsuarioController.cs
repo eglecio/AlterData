@@ -4,15 +4,19 @@ using Dominio.Interfaces;
 using Dominio.ModelosDTO;
 using Dominio.Servicos;
 using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Security;
 using System.Security.Claims;
 
 
 namespace API.Controllers {
 
+  [Authorize]
   [ApiController]
   [Route("[controller]")]
   public class UsuarioController : ControllerBase {
@@ -20,18 +24,21 @@ namespace API.Controllers {
     private readonly ILogger<Usuario> _logger;
     private readonly IRepositorio<Usuario> _repositorio;
     private readonly IValidator<UsuarioLoginDTO> _validator;
+    private readonly IValidator<Usuario> _validatorUsuario;
     private readonly IMapper _mapper;
 
     public UsuarioController(
       ILogger<Usuario> logger,
       IRepositorio<Usuario> repositorio,
       IValidator<UsuarioLoginDTO> validator,
-      IMapper mapper) {
+      IMapper mapper,
+      IValidator<Usuario> validatorUsuario) {
 
       _logger = logger;
       _mapper = mapper;
       _repositorio = repositorio;
       _validator = validator;
+      _validatorUsuario = validatorUsuario;
     }
 
 
@@ -46,7 +53,12 @@ namespace API.Controllers {
         return BadRequest(validacao.Errors);
 
       try {
-        var entidade = await _repositorio.ObterAsync(x => x.Email == modelo.Login && x.Senha == modelo.Senha && !x.Excluido && (x.DataInativacao == null || x.DataInativacao > DateTime.UtcNow.Date));
+        var entidade = await _repositorio.ObterAsync(x => 
+                        x.Email == modelo.Login 
+                        && x.Senha == modelo.Senha 
+                        && !x.Excluido
+                        && x.Status == Dominio.Enumeradores.StatusUsuario.Ativo);
+
         if (entidade == null) return NotFound();
 
         var claimsPrincipal = new ClaimsPrincipal(
@@ -63,14 +75,144 @@ namespace API.Controllers {
       catch (RepositorioException) {
         return NotFound();
       }
-
     }
     // </snippet_Create>
 
 
+    // POST: usuario
+    // <snippet_Create>
+    [HttpPost]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Add(UsuarioDTO modelo) {
+      try {
+        var entidade = _mapper.Map<Usuario>(modelo);
 
-    //public IActionResult Index() {
-    //  return View();
-    //}
+        var validacao = _validatorUsuario.Validate(entidade);
+        if (!validacao.IsValid)
+          return BadRequest(validacao.Errors);
+
+        // Verifica se o email ja esta vinculada a algum outro usuario...
+        var usuarioComEmailJaExiste = await _repositorio.ObterAsync(x => x.Email == modelo.Email.ToLower() && !x.Excluido);
+        if (usuarioComEmailJaExiste != null) {
+          validacao.Errors.Add(new ValidationFailure { ErrorMessage = "E-mail já cadastrado na base de dados!" });
+          return BadRequest(validacao.Errors);
+        }
+
+        await _repositorio.AdicionarAsync(entidade);
+      }
+      catch (Exception ex) {
+        _logger.LogError($"Add usuario: {ex.Message + " - inner execption: " + ex.InnerException}");
+        return Problem();
+      }
+
+      return Ok();
+    }
+    // </snippet_Create>
+
+    // PUT: usuario
+    // <snippet_Create>
+    [HttpPut]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Update(UsuarioDTO modelo) {
+      try {
+        var entidadeExistente = await _repositorio.ObterPorIdAsync(modelo.Id);
+        var inativadoAgora = modelo.Status == Dominio.Enumeradores.StatusUsuario.Inativo && entidadeExistente.Status == Dominio.Enumeradores.StatusUsuario.Ativo;
+        _mapper.Map(modelo, entidadeExistente);
+
+        var validacao = _validatorUsuario.Validate(entidadeExistente);
+        if (!validacao.IsValid)
+          return BadRequest(validacao.Errors);
+
+        if (inativadoAgora) {
+          entidadeExistente.DataInativacao = DateTime.Now;
+        }
+
+        // Verifica se trocou o email e se o novo ja vinculado a algum outro usuario...
+        var usuarioComEmailJaExiste = await _repositorio.ObterAsync(x => x.Email == modelo.Email.ToLower() && !x.Excluido);
+        if (usuarioComEmailJaExiste != null && usuarioComEmailJaExiste.Id != entidadeExistente.Id) {
+          validacao.Errors.Add(new ValidationFailure { ErrorMessage = "E-mail já cadastrado na base de dados!" });
+          return BadRequest(validacao.Errors);
+        }
+
+        await _repositorio.AtualizarAsync(entidadeExistente);
+      }
+      catch (RepositorioException) {
+        return NotFound();
+      }
+
+      return Ok();
+    }
+    // </snippet_Create>
+
+
+    // DELETE: usuario
+    // <snippet_Create>
+    [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Delete(int id) {
+      try {
+        var usuarioExistente = await _repositorio.ObterPorIdAsync(id);
+        await _repositorio.RemoverAsync(usuarioExistente);
+      }
+      catch (RepositorioException) {
+        return NotFound();
+      }
+
+      return Ok();
+    }
+    // </snippet_Create>
+
+
+    // GET: usuario
+    // <snippet_Create>
+    [HttpGet("{id}")]
+    [Authorize(Roles = "Admin")]
+    public async Task<ActionResult<UsuarioVisualizacaoDTO>> Get(int id) {
+      try {
+        var usuario = await _repositorio.ObterPorIdAsync(id);
+        var modelo = _mapper.Map<UsuarioVisualizacaoDTO>(usuario);
+
+        return Ok(modelo);
+      }
+      catch (RepositorioException) {
+        return NotFound();
+      }
+      catch (Exception ex) {
+        _logger.LogError($"Obter usuario visualizar: {ex.Message + " - inner execption: " + ex.InnerException}");
+        return Problem();
+      }
+    }
+    // </snippet_Create>
+
+
+    // GET: usuarios
+    // <snippet_Create>
+    [Authorize(Roles = "Admin")]
+    [HttpGet("{pagina}/{totalPorPagina}/{termo?}")]
+    public async Task<ActionResult<IEnumerable<UsuarioListagemDTO>>> Get(int pagina = 1, int totalPorPagina = 10, string termo = "") {
+      try {
+        var usuarioLogadoId = int.Parse(User.FindFirst("Id")?.Value ?? "0");// removo da listagem, para evitar que ele cometa erros com o seu proprio usuario...
+        IEnumerable<Usuario> usuarios;
+        if (!string.IsNullOrEmpty(termo.Trim())) {
+          usuarios = await _repositorio.BuscarPaginadoAsync(x => !x.Excluido && EF.Functions.ILike(x.Email, $"%{termo}%") && x.Id != usuarioLogadoId, pagina, totalPorPagina, z => z.Id);
+        }
+        else {
+          usuarios = await _repositorio.BuscarPaginadoAsync(x => !x.Excluido && x.Id != usuarioLogadoId, pagina, totalPorPagina, z => z.Id);
+        }
+
+        return Ok(_mapper.Map<List<UsuarioListagemDTO>>(usuarios
+           .Skip((pagina - 1) * totalPorPagina)
+           .Take(totalPorPagina).ToList()));
+      }
+      catch (RepositorioException) {
+        return NotFound();
+      }
+      catch (Exception ex) {
+        _logger.LogError($"Listagem de usuarios: {ex.Message + " - inner execption: " + ex.InnerException}");
+        return Problem();
+      }
+    }
+    // </snippet_Create>
+
   }
 }
