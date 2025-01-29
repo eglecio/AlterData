@@ -105,9 +105,6 @@
                 <q-item-section>
                   <q-item-label lines="1">{{ cliente_selecionado.nome }}</q-item-label>
                   <q-item-label caption lines="1">
-                    <span class="text-weight-bold">{{ cliente_selecionado.UltimoAcesso }}</span>
-                  </q-item-label>
-                  <q-item-label caption lines="1">
                     <q-badge v-if="!cliente_selecionado.excluido" color="blue" text-color="white" label="Ativo" />
                     <q-badge v-else color="red" text-color="white" label="Inativo" />
                   </q-item-label>
@@ -281,7 +278,7 @@ export default defineComponent({
         var finalizarCarregamento = (possuiRegistros) => {
           setTimeout(() => {
             if (possuiRegistros === false) {
-              instance.$refs.infinteScrollRef.stop()
+              instance.$refs.infinteScrollRef?.stop()
             }
             if (typeof done === "function") {
               done() // usado pra desaparecer o spinner...

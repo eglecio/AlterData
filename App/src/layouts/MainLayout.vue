@@ -16,18 +16,11 @@
         </q-toolbar-title>
         <!-- <q-space/> -->
         <div class="q-gutter-sm row items-center no-wrap">
-                    <q-btn round dense flat color="white" :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
-                           @click="$q.fullscreen.toggle()"
-                           v-if="$q.screen.gt.sm">
-                    </q-btn>
-          <!-- <q-btn round dense flat color="white" icon="fab fa-github" type="a"
-                 href="https://github.com/pratik227/quasar-admin" target="_blank">
-          </q-btn> -->
-          <!-- <q-btn round dense flat style="color:red !important;" type="a" href="https://github.com/sponsors/pratik227"
-                 target="_blank">
-            <i class="fa fa-heart fa-2x fa-beat"></i>
-          </q-btn> -->
-          <q-btn round dense flat color="white" icon="notifications" @click="marcarNovasNotificacoesComoVistas">
+          <q-btn round dense flat color="white" :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
+              @click="$q.fullscreen.toggle()"
+              v-if="$q.screen.gt.sm">
+          </q-btn>
+          <!-- <q-btn round dense flat color="white" icon="notifications" @click="marcarNovasNotificacoesComoVistas">
             <q-badge v-if="novasNotificacoes > 0" color="red" text-color="white" floating>
               {{ novasNotificacoes }}
             </q-badge>
@@ -41,7 +34,7 @@
                 </q-card>
               </q-list>
             </q-menu>
-          </q-btn>
+          </q-btn> -->
 
           <!-- icone da empresa -->
           <q-btn round flat>
@@ -75,6 +68,15 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>Clientes</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item to="/produtos" active-class="q-item-no-link-highlighting">
+          <q-item-section avatar>
+            <q-icon name="fas fa-light fa-cubes"/>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Produtos</q-item-label>
           </q-item-section>
         </q-item>
 
@@ -124,7 +126,6 @@
 </template>
 
 <script>
-import EssentialLink from 'components/EssentialLink.vue'
 import Messages from "./Messages.vue";
 
 import {defineComponent, ref} from 'vue'
@@ -136,7 +137,6 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink,
     Messages
   },
 

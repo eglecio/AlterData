@@ -1,7 +1,6 @@
 using Dominio.Entidades;
 using Dominio.Validacao;
 using FluentValidation.TestHelper;
-using System.Xml.XPath;
 
 namespace Testes.Dominio {
 

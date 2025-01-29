@@ -8,6 +8,5 @@
     public string? Telefone { get; set; }
     public string? Endereco { get; set; }
     public string? Observacao { get; set; }
-    //public DateTime DataCadastro { get; set; } = DateTime.Today;
   }
 }

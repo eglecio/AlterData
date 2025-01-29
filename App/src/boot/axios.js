@@ -1,6 +1,7 @@
 import { boot } from 'quasar/wrappers'
 import axios from 'axios'
-import { handleAxiosError } from 'src/utils/errorHandler'
+// import { handleAxiosError } from 'src/utils/errorHandler'
+import { setupAxiosInterceptors } from 'src/utils/errorHandler'
 import { LocalStorage } from 'quasar'
 
 // Be careful when using SSR for cross-request state pollution
@@ -17,29 +18,29 @@ const api = axios.create({
     'Content-Type': 'application/json;charset=UTF-8'
   }
 })
+setupAxiosInterceptors(api)
+// // Adicionando console.log para debug
+// api.interceptors.response.use(
+//   response => {
+//     // console.log('Sucesso na requisição:', response)
+//     return response
+//   },
+//   error => {
+//     // console.log('Erro capturado no interceptor:', error)
+//     handleAxiosError(error)
+//     return Promise.reject(error)
+//   }
+// )
 
-// Adicionando console.log para debug
-api.interceptors.response.use(
-  response => {
-    // console.log('Sucesso na requisição:', response)
-    return response
-  },
-  error => {
-    // console.log('Erro capturado no interceptor:', error)
-    handleAxiosError(error)
-    return Promise.reject(error)
-  }
-)
-
-// Interceptor para adicionar o token em todas as requisições
-api.interceptors.request.use(config => {
-  const token = LocalStorage.getItem('token')
-  if (token) {
-    // console.log(token)
-    config.headers.Authorization = `Bearer ${token}`
-  }
-  return config
-})
+// // Interceptor para adicionar o token em todas as requisições
+// api.interceptors.request.use(config => {
+//   const token = LocalStorage.getItem('token')
+//   if (token) {
+//     // console.log(token)
+//     config.headers.Authorization = `Bearer ${token}`
+//   }
+//   return config
+// })
 
 
 export default boot(({ app }) => {
