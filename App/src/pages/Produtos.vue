@@ -246,7 +246,7 @@ export default defineComponent({
         const response = await api.get(`produto/${modelo.id}`)
         this.produto_selecionado = response.data ?? []
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
       finally {
         Loading.hide()
@@ -283,7 +283,7 @@ export default defineComponent({
         }
 
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
 
     },
@@ -370,7 +370,7 @@ export default defineComponent({
           })
         }
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
       finally {
         Loading.hide()

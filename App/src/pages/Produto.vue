@@ -32,12 +32,18 @@
 
               <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <q-item-section>
+                  <!-- adicionar a propriedade   ***** type="number"  ***** para permitir valores abaixo de zero
+                  mas isso esta prejudicando na hora de popular, pois o valor fica zerado
+                  type="number"
+                  step="any"
+                  vou ter de testar ou trocar o componente ao final do projeto
+                  -->
+
                   <q-input dark color="white" dense v-model="produto.quantidadeEstoque" label="Quantidade em Estoque*"
                     :error-message-class="messageClass"
                     :rules="[
                       val => !!val || 'Quantidade em estoque é obrigatória'
                     ]"
-                    type="number"
                     mask="#.##"
                     fill-mask="0"
                     reverse-fill-mask
@@ -142,7 +148,7 @@ export default defineComponent({
           }
          })
         .catch(error => {
-          console.error(error)
+          // console.error(error)
         })
     },
 
@@ -185,7 +191,7 @@ export default defineComponent({
           }
         })
         .catch(error => {
-          console.error(error)
+          // console.error(error)
         })
         .finally(() => {
           Loading.hide()

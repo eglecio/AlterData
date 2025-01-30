@@ -92,11 +92,10 @@ import {defineComponent, ref} from 'vue'
 import { api } from 'boot/axios'
 import { useQuasar, Loading, LocalStorage, Notify, QSpinnerGears } from 'quasar'
 
-const opcoesPerfil = [
-  { label: 'Visualização', value: 1 },
-  { label: 'Edição', value: 2 },
-  // { label: 'Admin', value: 99 }
-]
+// const opcoesPerfil = [
+//   { label: 'Visualização', value: 1 },
+//   { label: 'Edição', value: 2 }
+// ]
 
 export default defineComponent({
   name: "Usuario",
@@ -118,7 +117,6 @@ export default defineComponent({
       password_dict: {},
       status: ref(true),
       perfil: ref('Visualização'),
-      opcoesPerfil,
       showPassword: ref(false)
     }
   },
@@ -142,8 +140,8 @@ export default defineComponent({
           if (response.data) {
             instance.usuario = response.data
             instance.status = instance.usuario.status === 1
-            if (instance.usuario.perfil == 99) {
-              instance.opcoesPerfil.push({ label: 'Admin', value: 99 })
+            if (instance.usuario.perfil === 99) {
+              // instance.opcoesPerfil.push({ label: 'Admin', value: 99 })
               instance.perfil = 'Admin'
             } else {
               instance.perfil = instance.usuario.perfil === 2 ? 'Edição' : 'Visualização'
@@ -151,7 +149,7 @@ export default defineComponent({
           }
         })
         .catch(error => {
-          console.error(error)
+          // console.error(error)
         })
     },
 
@@ -170,7 +168,7 @@ export default defineComponent({
       }
 
       Loading.show({ spinner: QSpinnerGears })
-      instance.usuario.perfil = instance.perfil === 'Admin' ? 99 : instance.perfil === 'Edição' ? 2 : 1
+      instance.usuario.perfil = instance.perfil.value
       instance.usuario.status = instance.status ? 1 : 2
       await (
             instance.estaCadastrando
@@ -196,7 +194,7 @@ export default defineComponent({
           }
         })
         .catch(error => {
-          console.error(error)
+          // console.error(error)
         })
         .finally(() => {
           Loading.hide()

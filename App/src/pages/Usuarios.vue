@@ -241,7 +241,7 @@ export default defineComponent({
           instance.usuario_selecionado = response.data
         }
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
       finally {
         Loading.hide()
@@ -276,7 +276,7 @@ export default defineComponent({
         }
 
       } catch (error) {
-        console.log(error)
+        // console.log(error)
         instance.$refs.infinteScrollRef.stop()
       }
 
@@ -344,7 +344,7 @@ export default defineComponent({
           })
         }
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
       finally {
         Loading.hide()

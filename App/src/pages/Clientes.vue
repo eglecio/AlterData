@@ -266,7 +266,7 @@ export default defineComponent({
           instance.cliente_selecionado = response.data
         }
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
       finally {
         Loading.hide()
@@ -303,7 +303,7 @@ export default defineComponent({
         }
 
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
 
     },
@@ -391,7 +391,7 @@ export default defineComponent({
           })
         }
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
       finally {
         Loading.hide()

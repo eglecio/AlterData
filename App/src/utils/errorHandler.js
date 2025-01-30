@@ -1,6 +1,23 @@
 import { Notify, LocalStorage } from 'quasar'
 import { api } from 'src/boot/axios';
-import router from 'src/router'
+import { useRouter } from 'vue-router'
+
+// Crie um módulo separado para gerenciar a navegação
+const navegacaoRouter = {
+  router: null,
+
+  // Método para inicializar o router
+  initRouter(router) {
+    this.router = router
+  },
+
+  // Método para navegar
+  irParaLogin() {
+    if (this.router) {
+      this.router.push('/login')
+    }
+  }
+}
 
 export const handleAxiosError = (error, customConfig = {}) => {
 
@@ -11,8 +28,8 @@ export const handleAxiosError = (error, customConfig = {}) => {
       position: 'center',
       timeout: 3000
     })
-    localStorage.removeItem('token')
-    router.push('/login')
+    LocalStorage.removeItem('token')
+    navegacaoRouter.irParaLogin()
     return
   }
 
@@ -24,7 +41,7 @@ export const handleAxiosError = (error, customConfig = {}) => {
       timeout: 3000,
       ...customConfig
     })
-    return
+    return Promise.reject(error)
   }
 
   // Primeiro, verificamos explicitamente se é um erro 401
@@ -34,9 +51,9 @@ export const handleAxiosError = (error, customConfig = {}) => {
   }
 
   if (!error.response) {  // Provavel erro de conexão...
-    const token = localStorage.getItem('token')
+    const token = LocalStorage.getItem('token')
     if (!token) {
-      router.push('/login')
+      // navegacaoRouter.irParaLogin()
       return
     }
     // // Efetuo uma chamada para metodo de validacao de TOKEN EXPIRADO. Nao esta tratando o erro 401 e outros de forma correta, sempre ta caindo aqui,
@@ -55,8 +72,8 @@ export const handleAxiosError = (error, customConfig = {}) => {
     //     erroDeConexao()
     //   })
     // efetuarLogoutSessaoExpirada()
-    erroDeConexao()
-    return
+    // erroDeConexao()
+    return Promise.reject(error)
   }
 
   const { status, data } = error.response
@@ -73,7 +90,7 @@ export const handleAxiosError = (error, customConfig = {}) => {
         ...customConfig
       })
     })
-    return
+    return Promise.reject(error)
   }
 
   // Tratamento padrão baseado no status HTTP
@@ -130,3 +147,5 @@ export const setupAxiosInterceptors = (axios) => {
     }
   )
 }
+
+export { navegacaoRouter }

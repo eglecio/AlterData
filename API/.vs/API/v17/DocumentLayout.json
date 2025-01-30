@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Projetos\\AlterData\\API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|c:\\projetos\\alterdata\\api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|solutionrelative:controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|c:\\projetos\\alterdata\\api\\controllers\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|solutionrelative:controllers\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -12,10 +16,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|c:\\projetos\\alterdata\\api\\controllers\\produtocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|solutionrelative:controllers\\produtocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|c:\\projetos\\alterdata\\api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|solutionrelative:controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3C460A60-EC0C-4ED0-82FE-85353EB6F6D9}|API.csproj|c:\\projetos\\alterdata\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -134,7 +134,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -158,8 +158,7 @@
               "RelativeToolTip": "..\\Dominio\\Validacao\\UsuarioValidador.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T23:21:19.376Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-28T23:21:19.376Z"
             },
             {
               "$type": "Document",
@@ -175,33 +174,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "UsuarioController.cs",
               "DocumentMoniker": "C:\\Projetos\\AlterData\\API\\Controllers\\UsuarioController.cs",
               "RelativeDocumentMoniker": "Controllers\\UsuarioController.cs",
               "ToolTip": "C:\\Projetos\\AlterData\\API\\Controllers\\UsuarioController.cs",
               "RelativeToolTip": "Controllers\\UsuarioController.cs",
-              "ViewState": "AQIAAFAAAAAAAAAAAAAAAGgAAAAAAAAA",
+              "ViewState": "AQIAACsAAAAAAAAAAAApwEAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-26T15:53:22.01Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ClienteController.cs",
               "DocumentMoniker": "C:\\Projetos\\AlterData\\API\\Controllers\\ClienteController.cs",
               "RelativeDocumentMoniker": "Controllers\\ClienteController.cs",
               "ToolTip": "C:\\Projetos\\AlterData\\API\\Controllers\\ClienteController.cs",
               "RelativeToolTip": "Controllers\\ClienteController.cs",
-              "ViewState": "AQIAAFUAAAAAAAAAAAAcwG0AAAAkAAAA",
+              "ViewState": "AQIAAFUAAAAAAAAAAAA0wGwAAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-25T22:13:10.49Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ProdutoController.cs",
               "DocumentMoniker": "C:\\Projetos\\AlterData\\API\\Controllers\\ProdutoController.cs",
               "RelativeDocumentMoniker": "Controllers\\ProdutoController.cs",
@@ -214,7 +213,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "PerfilUsuario.cs",
               "DocumentMoniker": "C:\\Projetos\\AlterData\\Dominio\\Enumeradores\\PerfilUsuario.cs",
               "RelativeDocumentMoniker": "..\\Dominio\\Enumeradores\\PerfilUsuario.cs",
@@ -222,8 +221,7 @@
               "RelativeToolTip": "..\\Dominio\\Enumeradores\\PerfilUsuario.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAqwAcAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T18:38:43.064Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T18:38:43.064Z"
             },
             {
               "$type": "Document",
@@ -235,8 +233,7 @@
               "RelativeToolTip": "..\\Dominio\\Entidades\\Usuario.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T18:35:08.065Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T18:35:08.065Z"
             },
             {
               "$type": "Document",
@@ -248,8 +245,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAAEIAAAAAAAAAAAAAAFQAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T19:11:06.486Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T19:11:06.486Z"
             },
             {
               "$type": "Document",
@@ -261,8 +257,7 @@
               "RelativeToolTip": "..\\Dominio\\Validacao\\ProdutoValidador.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-29T14:38:48.938Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-29T14:38:48.938Z"
             },
             {
               "$type": "Document",
@@ -274,8 +269,7 @@
               "RelativeToolTip": "..\\Dominio\\Servicos\\ContextoBancoDeDados.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T18:55:39.909Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T18:55:39.909Z"
             },
             {
               "$type": "Document",

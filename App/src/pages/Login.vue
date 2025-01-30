@@ -54,13 +54,13 @@ import {defineComponent} from 'vue'
 import {ref} from 'vue'
 import { api } from 'boot/axios'
 // import { handleAxiosError } from 'utils/erroHandler.js'
-import { useQuasar, Loading, LocalStorage, Notify, QSpinnerGears } from 'quasar'
+import { Loading, LocalStorage, Notify, QSpinnerGears } from 'quasar'
 // import { SessionStorage } from 'quasar'
 
 export default defineComponent({
 
   setup() {
-    const $q = useQuasar()
+    // const $q = useQuasar()
 
     // const setTokenPadraoParaRequisicoes = (tokenParametro = LocalStorage.getItem('token')) => {
     //   if (tokenParametro) {
@@ -92,6 +92,7 @@ export default defineComponent({
             LocalStorage.set('token', response.data.accessToken)
             LocalStorage.set('tokenType', response.data.tokenType)
             LocalStorage.set('refreshToken', response.data.refreshToken)
+            LocalStorage.set('login', this.login)
             // this.setTokenPadraoParaRequisicoes(response.data.accessToken)
             this.$router.push('/')
             return
@@ -109,9 +110,19 @@ export default defineComponent({
         })
         .catch((error) => {
           console.error(error)
+          // Caso webservice fora do ar, ou erro de rede...
+          if (!error.response) {
+            Notify.create({
+              message: 'Ops! Ocorreu um erro ao tentar logar. Tente novamente mais tarde.',
+              position: 'center',
+              timeout: 3000
+            })
+          }
         })
         .finally(() => {
           Loading.hide()
+          this.login = ''
+          this.senha = ''
         })
     }
   }
