@@ -91,7 +91,7 @@ export default defineComponent({
         const response = await api.get(`cliente/dashboard`)
         this.dadosDashboard.TotalDeClientes = response.data
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
       finally {
         this.dadosDashboard.CarregandoTotalDeClientes = false
@@ -103,7 +103,7 @@ export default defineComponent({
         const response = await api.get(`produto/dashboard`)
         this.dadosDashboard.TotalDeProdutos = response.data
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
       finally {
         this.dadosDashboard.CarregandoTotalDeProdutos = false

@@ -181,7 +181,7 @@ export default defineComponent({
           }
         }
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     },
 
@@ -199,7 +199,7 @@ export default defineComponent({
           }
         }
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     }
   }

@@ -1,7 +1,6 @@
 import { boot } from 'quasar/wrappers'
 import axios from 'axios'
-// import { handleAxiosError } from 'src/utils/errorHandler'
-import { setupAxiosInterceptors } from 'src/utils/errorHandler'
+import { setupAxiosInterceptors, navegacaoRouter } from 'src/utils/errorHandler'
 import { LocalStorage } from 'quasar'
 
 // Be careful when using SSR for cross-request state pollution
@@ -18,7 +17,7 @@ const api = axios.create({
     'Content-Type': 'application/json;charset=UTF-8'
   }
 })
-setupAxiosInterceptors(api)
+
 // // Adicionando console.log para debug
 // api.interceptors.response.use(
 //   response => {
@@ -43,7 +42,12 @@ setupAxiosInterceptors(api)
 // })
 
 
-export default boot(({ app }) => {
+export default boot(({ app, router }) => {
+  setupAxiosInterceptors(api)
+
+  // Inicia o navegacaoRouter com a instância do router para usar dentro do handler de erro...
+  navegacaoRouter.initRouter(router)
+
   // for use inside Vue files (Options API) through this.$axios and this.$api
 
   app.config.globalProperties.$axios = axios

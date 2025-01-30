@@ -36,6 +36,9 @@
       bordered
       class="bg-primary text-white"
     >
+      <div class="text-center q-pa-md q-mb-md" style="border-bottom: 1px solid #5064b5;">
+        <span class="text-weight-light text-caption">{{ login }}</span>
+      </div>
       <q-list>
         <q-item to="/" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
@@ -82,24 +85,6 @@
           </q-item-section>
         </q-item>
 
-        <!-- <q-item to="/Charts" active-class="q-item-no-link-highlighting">
-          <q-item-section avatar>
-            <q-icon name="insert_chart"/>
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Charts</q-item-label>
-          </q-item-section>
-        </q-item> -->
-
-        <!-- <q-item to="/Tables" active-class="q-item-no-link-highlighting">
-          <q-item-section avatar>
-            <q-icon name="table_chart"/>
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Tables</q-item-label>
-          </q-item-section>
-        </q-item> -->
-
       </q-list>
     </q-drawer>
 
@@ -129,67 +114,66 @@ export default defineComponent({
   setup() {
     const leftDrawerOpen = ref(false)
     const $q = useQuasar()
-    const novasNotificacoes = ref(0)
     const urlLogo = ref('img/user-avatar.png')
-
     return {
       $q,
       leftDrawerOpen,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value
       },
-      novasNotificacoes,
-      urlLogo
+      urlLogo,
+      login: ref('')
     }
   },
 
   created () {
-    this.verificarToken()
   },
 
   mounted () {
     this.obterPerfilUsuario()
+    this.login = LocalStorage.getItem('login')
   },
 
   methods: {
 
+    efetuarLogoutSessaoExpirada () {
+      Notify.create({
+        type: 'negative',
+        message: 'Sessão expirada. Por favor, faça login novamente.',
+        position: 'center',
+        timeout: 3000
+      })
+      this.logoff()
+      return
+    },
+
     logoff (e, go) {
-      e.preventDefault()
-      LocalStorage.clear()
+      e?.preventDefault()
+      localStorage.clear()
       this.$router.push('/login')
     },
 
-    verificarToken () {
-      var token = LocalStorage.getItem('token')
-      var valoresInvalidos = [ null, undefined, '']
-      if (valoresInvalidos.indexOf(token) > -1) {
-        this.$router.push('/login')
-      } else {
-        // Configura para todas as demais chamadas o token padrao no cabecalho...
-        api.defaults.headers = { 'x-access-token': token, 'Content-Type': 'application/json;charset=UTF-8' }
-      }
-      // TODO: precisa ter uma metodo que solicita ao ws se o token do cara ainda eh valido, se ele esta adimplente, etc...
-    },
-
     async obterPerfilUsuario () {
-      await api.get('usuario/perfil')
-        .then((response) => {
-          switch (response.data) {
-            case 'Admin':
-              this.perfilPermissao = perfilPermissaoEnum.Admin
-              break
-            case 'Editor':
-              this.perfilPermissao = perfilPermissaoEnum.Editor
-              break
-            default:
-              this.perfilPermissao = perfilPermissaoEnum.Padrao
-              break
-          }
-          LocalStorage.set('perfilPermissao', this.perfilPermissao)
-        })
-        .catch((error) => {
-          console.error(error)
-        })
+      try {
+        var response = await api.get('usuario/perfil')
+        switch (response.data) {
+          case 'Admin':
+            this.perfilPermissao = perfilPermissaoEnum.Admin
+            break
+          case 'Editor':
+            this.perfilPermissao = perfilPermissaoEnum.Editor
+            break
+          default:
+            this.perfilPermissao = perfilPermissaoEnum.Padrao
+            break
+        }
+
+        LocalStorage.set('perfilPermissao', this.perfilPermissao)
+      } catch (error) {
+        if (error.response?.status === 401 || error.stack.indexOf('Network Error') > -1) {
+          this.efetuarLogoutSessaoExpirada()
+        }
+      }
     }
 
 
