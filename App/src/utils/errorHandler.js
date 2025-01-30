@@ -2,16 +2,15 @@ import { Notify, LocalStorage } from 'quasar'
 import { api } from 'src/boot/axios';
 import { useRouter } from 'vue-router'
 
-// Crie um módulo separado para gerenciar a navegação
+// Módulo separado para gerenciar a navegação dentro do handler...
 const navegacaoRouter = {
   router: null,
 
-  // Método para inicializar o router
   initRouter(router) {
     this.router = router
   },
 
-  // Método para navegar
+  // Métodos para navegar....
   irParaLogin() {
     if (this.router) {
       this.router.push('/login')
@@ -44,35 +43,18 @@ export const handleAxiosError = (error, customConfig = {}) => {
     return Promise.reject(error)
   }
 
-  // Primeiro, verificamos explicitamente se é um erro 401
+  // Primeiro, verificamos se o erro respon http 401...
   if (error.response?.status === 401) {
     efetuarLogoutSessaoExpirada()
     return Promise.reject(error)
   }
 
-  if (!error.response) {  // Provavel erro de conexão...
+  if (!error.response) {  // Se não houver resposta, eh um provavel erro de conexão...
     const token = LocalStorage.getItem('token')
     if (!token) {
-      // navegacaoRouter.irParaLogin()
+      navegacaoRouter.irParaLogin()
       return
     }
-    // // Efetuo uma chamada para metodo de validacao de TOKEN EXPIRADO. Nao esta tratando o erro 401 e outros de forma correta, sempre ta caindo aqui,
-    // // entao vou valido se o token ainda eh valido no WS e senao for eu retorno para o login...
-    // api.get('usuario/validarToken', { headers: { Authorization: `Bearer ${token}` } })
-    //   .then(response => {
-    //     // Se a validação for bem sucedida e retornar false, entao a sessão expirou...
-    //     if (response.data === false) {
-    //       efetuarLogoutSessaoExpirada()
-    //       return
-    //     }
-
-    //     erroDeConexao()
-    //   })
-    //   .catch(() => {
-    //     erroDeConexao()
-    //   })
-    // efetuarLogoutSessaoExpirada()
-    // erroDeConexao()
     return Promise.reject(error)
   }
 

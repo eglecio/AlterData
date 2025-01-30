@@ -1,0 +1,421 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API</name>
+    </assembly>
+    <members>
+        <member name="T:API.Controllers.ClienteController">
+            <summary>
+            Controlador responsável pelo gerenciamento de operações relacionadas a clientes no sistema.
+            Requer autenticação para todos os endpoints.
+            </summary>
+            <remarks>
+            Rota base: /Cliente
+            Autenticação: Obrigatória
+            Operações suportadas:
+            - Criação de novos clientes
+            - Atualização de clientes existentes
+            - Exclusão de clientes
+            - Consulta de detalhes de clientes
+            - Listagem de clientes com paginação e busca
+            - Obtenção de estatísticas para dashboard
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.ClienteController.Add(Dominio.ModelosDTO.ClienteDTO)">
+            <summary>
+            Adiciona um novo cliente no sistema.
+            </summary>
+            <param name="modelo">Objeto DTO contendo as informações do cliente</param>
+            <returns>O ID do cliente recém-criado</returns>
+            <response code="200">Retorna o ID do cliente criado</response>
+            <response code="400">Se os dados do cliente forem inválidos</response>
+            <response code="500">Se ocorrer um erro interno durante o processamento</response>
+            <remarks>
+            Perfil Necessário: Editor ou Admin
+            Exemplo de requisição:
+            
+                POST /Cliente
+                {
+                    "nome": "João Silva",
+                    "email": "joao@exemplo.com",
+                    "telefone": "11999999999"
+                }
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.ClienteController.Update(Dominio.ModelosDTO.ClienteDTO)">
+            <summary>
+            Atualiza as informações de um cliente existente.
+            </summary>
+            <param name="modelo">Objeto DTO contendo as informações atualizadas do cliente</param>
+            <returns>Sem conteúdo em caso de sucesso</returns>
+            <response code="200">Se o cliente foi atualizado com sucesso</response>
+            <response code="400">Se os dados atualizados do cliente forem inválidos</response>
+            <response code="404">Se o cliente não for encontrado</response>
+            <remarks>
+            Perfil Necessário: Editor ou Admin
+            Exemplo de requisição:
+            
+                PUT /Cliente
+                {
+                    "id": 1,
+                    "nome": "João Silva Atualizado",
+                    "email": "joao.atual@exemplo.com",
+                    "telefone": "11988888888"
+                }
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.ClienteController.Delete(System.Int32)">
+            <summary>
+            Remove um cliente do sistema.
+            </summary>
+            <param name="clienteId">O ID do cliente a ser removido</param>
+            <returns>Sem conteúdo em caso de sucesso</returns>
+            <response code="200">Se o cliente foi removido com sucesso</response>
+            <response code="404">Se o cliente não foi encontrado</response>
+            <remarks>
+            Perfil Necessário: Editor ou Admin
+            
+                DELETE /Cliente/{clienteId}
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.ClienteController.Get(System.Int32)">
+            <summary>
+            Recupera os detalhes de um cliente específico pelo ID.
+            </summary>
+            <param name="clienteId">O ID do cliente a ser consultado</param>
+            <returns>Os detalhes do cliente</returns>
+            <response code="200">Retorna as informações do cliente solicitado</response>
+            <response code="404">Se o cliente não foi encontrado</response>
+            <remarks>
+            Perfil Necessário: Padrão, Editor ou Admin
+            
+                GET /Cliente/{clienteId}
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.ClienteController.Get(System.Int32,System.Int32,System.String)">
+            <summary>
+            Recupera uma lista paginada de clientes com funcionalidade de busca opcional.
+            </summary>
+            <param name="pagina">Número da página (padrão: 1)</param>
+            <param name="totalPorPagina">Itens por página (padrão: 10)</param>
+            <param name="termo">Termo de busca opcional para filtrar clientes por nome, email ou telefone</param>
+            <returns>Uma lista de clientes que correspondem aos critérios de busca</returns>
+            <response code="200">Retorna a lista de clientes</response>
+            <response code="404">Se nenhum cliente for encontrado</response>
+            <remarks>
+            Perfil Necessário: Padrão, Editor ou Admin
+            
+                GET /Cliente/{pagina}/{totalPorPagina}/{termo?}
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.ClienteController.Get(Dominio.Servicos.ContextoBancoDeDados)">
+            <summary>
+            Obtém o total de clientes ativos no sistema para fins de dashboard.
+            </summary>
+            <returns>O número total de clientes ativos</returns>
+            <response code="200">Retorna o total de clientes ativos</response>
+            <remarks>
+            Perfil Necessário: Padrão, Editor ou Admin
+            
+                GET /Cliente/dashboard
+            </remarks>
+        </member>
+        <member name="T:API.Controllers.ProdutoController">
+            <summary>
+            Controlador responsável pelo gerenciamento de produtos no sistema.
+            Requer autenticação para todos os endpoints.
+            </summary>
+            <remarks>
+            Rota base: /Produto
+            Autenticação: Obrigatória
+            Operações suportadas:
+            - Criação de novos produtos
+            - Atualização de produtos existentes
+            - Exclusão de produtos
+            - Consulta de detalhes de produtos
+            - Listagem de produtos com paginação e busca
+            - Estatísticas de dashboard e estoque
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.ProdutoController.Add(Dominio.ModelosDTO.ProdutoDTO)">
+            <summary>
+            Adiciona um novo produto no sistema.
+            </summary>
+            <param name="modelo">Objeto DTO contendo as informações do produto</param>
+            <returns>O resultado da operação</returns>
+            <response code="200">Se o produto foi criado com sucesso</response>
+            <response code="400">Se os dados do produto forem inválidos</response>
+            <response code="401">Se o usuário não estiver autenticado</response>
+            <response code="403">Se o usuário não tiver permissão de editor ou admin</response>
+            <remarks>
+            Perfil Necessário: Editor ou Admin
+            Exemplo de requisição:
+            
+                POST /Produto
+                {
+                    "nome": "Produto Exemplo",
+                    "descricao": "Descrição do produto",
+                    "preco": 99.90,
+                    "quantidadeEstoque": 100
+                }
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.ProdutoController.Update(Dominio.ModelosDTO.ProdutoDTO)">
+            <summary>
+            Atualiza as informações de um produto existente.
+            </summary>
+            <param name="modelo">Objeto DTO contendo as informações atualizadas do produto</param>
+            <returns>O resultado da operação</returns>
+            <response code="200">Se o produto foi atualizado com sucesso</response>
+            <response code="400">Se os dados atualizados do produto forem inválidos</response>
+            <response code="404">Se o produto não for encontrado</response>
+            <remarks>
+            Perfil Necessário: Editor ou Admin
+            Exemplo de requisição:
+            
+                PUT /Produto
+                {
+                    "id": 1,
+                    "nome": "Produto Atualizado",
+                    "descricao": "Nova descrição",
+                    "preco": 149.90,
+                    "quantidadeEstoque": 150
+                }
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.ProdutoController.Delete(System.Int32)">
+            <summary>
+            Remove um produto do sistema.
+            </summary>
+            <param name="id">O ID do produto a ser removido</param>
+            <returns>O resultado da operação</returns>
+            <response code="200">Se o produto foi removido com sucesso</response>
+            <response code="404">Se o produto não foi encontrado</response>
+            <remarks>
+            Perfil Necessário: Editor ou Admin
+            
+                DELETE /Produto/{id}
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.ProdutoController.Get(System.Int32)">
+            <summary>
+            Recupera os detalhes de um produto específico pelo ID.
+            </summary>
+            <param name="id">O ID do produto a ser consultado</param>
+            <returns>Os detalhes do produto</returns>
+            <response code="200">Retorna as informações do produto solicitado</response>
+            <response code="404">Se o produto não foi encontrado</response>
+            <remarks>
+            Perfil Necessário: Padrão, Editor ou Admin
+            
+                GET /Produto/{id}
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.ProdutoController.Get(System.Int32,System.Int32,System.String)">
+            <summary>
+            Recupera uma lista paginada de produtos com funcionalidade de busca opcional.
+            </summary>
+            <param name="pagina">Número da página (padrão: 1)</param>
+            <param name="totalPorPagina">Itens por página (padrão: 10)</param>
+            <param name="termo">Termo de busca opcional para filtrar produtos por nome</param>
+            <returns>Uma lista de produtos que correspondem aos critérios de busca</returns>
+            <response code="200">Retorna a lista de produtos</response>
+            <response code="404">Se nenhum produto for encontrado</response>
+            <remarks>
+            Perfil Necessário: Padrão, Editor ou Admin
+            
+                GET /Produto/{pagina}/{totalPorPagina}/{termo?}
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.ProdutoController.Get(Dominio.Servicos.ContextoBancoDeDados)">
+            <summary>
+            Obtém o total de produtos ativos no sistema para fins de dashboard.
+            </summary>
+            <returns>O número total de produtos ativos</returns>
+            <response code="200">Retorna o total de produtos ativos</response>
+            <remarks>
+            Perfil Necessário: Padrão, Editor ou Admin
+            
+                GET /Produto/dashboard
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.ProdutoController.GetProdutosComMaiorEstoque(Dominio.Servicos.ContextoBancoDeDados)">
+            <summary>
+            Lista os 10 produtos com maior quantidade em estoque.
+            </summary>
+            <returns>Lista dos top 10 produtos com nome e quantidade em estoque</returns>
+            <response code="200">Retorna a lista dos produtos com maior estoque</response>
+            <remarks>
+            Perfil Necessário: Padrão, Editor ou Admin
+            Retorna uma lista de pares chave-valor onde:
+            - Chave (string): Nome do produto
+            - Valor (int): Quantidade em estoque
+            
+                GET /Produto/top
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.ProdutoController.GetProdutosComEstoqueZeradoOuNegativo(Dominio.Servicos.ContextoBancoDeDados)">
+            <summary>
+            Lista os 10 produtos com estoque zerado ou negativo.
+            </summary>
+            <returns>Lista de produtos com estoque crítico</returns>
+            <response code="200">Retorna a lista dos produtos com estoque zerado ou negativo</response>
+            <remarks>
+            Perfil Necessário: Padrão, Editor ou Admin
+            Retorna uma lista de pares chave-valor onde:
+            - Chave (string): Nome do produto
+            - Valor (int): Quantidade em estoque (zero ou negativo)
+            
+                GET /Produto/estoque-negativo
+            </remarks>
+        </member>
+        <member name="T:API.Controllers.UsuarioController">
+            <summary>
+            Controlador responsável pelo gerenciamento de usuários no sistema.
+            Requer autenticação para a maioria dos endpoints, exceto login.
+            </summary>
+            <remarks>
+            Rota base: /Usuario
+            Autenticação: Obrigatória (exceto para login)
+            Operações suportadas:
+            - Autenticação de usuários
+            - Criação de novos usuários
+            - Atualização de usuários existentes
+            - Exclusão de usuários
+            - Consulta de detalhes de usuários
+            - Listagem de usuários com paginação e busca
+            - Consulta de perfil do usuário autenticado
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.UsuarioController.Login(Dominio.ModelosDTO.UsuarioLoginDTO)">
+            <summary>
+            Realiza a autenticação do usuário no sistema.
+            </summary>
+            <param name="modelo">Credenciais do usuário</param>
+            <returns>Token de autenticação</returns>
+            <response code="200">Retorna o token de autenticação (.NET Core 8 Bearer Token)</response>
+            <response code="400">Se as credenciais forem inválidas</response>
+            <response code="404">Se o usuário não for encontrado ou estiver inativo</response>
+            <remarks>
+            Endpoint público que não requer autenticação prévia.
+            Exemplo de requisição:
+            
+                POST /Usuario/login
+                {
+                    "login": "usuario@exemplo.com",
+                    "senha": "senhaSegura123"
+                }
+            
+            O token retornado deve ser incluído no header Authorization das requisições subsequentes.
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.UsuarioController.ObterPerfil">
+            <summary>
+            Obtém o perfil do usuário atualmente autenticado.
+            </summary>
+            <returns>String indicando o perfil do usuário</returns>
+            <response code="200">Retorna o perfil do usuário (ex: "Admin", "Editor", "Padrao")</response>
+            <response code="401">Se o usuário não estiver autenticado</response>
+            <remarks>
+            Endpoint protegido que requer autenticação.
+            
+                GET /Usuario/perfil
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.UsuarioController.Add(Dominio.ModelosDTO.UsuarioDTO)">
+            <summary>
+            Adiciona um novo usuário ao sistema.
+            </summary>
+            <param name="modelo">Dados do novo usuário</param>
+            <returns>Resultado da operação</returns>
+            <response code="200">Se o usuário foi criado com sucesso</response>
+            <response code="400">Se os dados forem inválidos ou o email já existir</response>
+            <response code="401">Se o usuário não estiver autenticado</response>
+            <response code="403">Se o usuário não tiver perfil de administrador</response>
+            <remarks>
+            Perfil Necessário: Admin
+            Exemplo de requisição:
+            
+                POST /Usuario
+                {
+                    "email": "novo@exemplo.com",
+                    "senha": "senhaSegura123",
+                    "perfil": "Padrao",
+                    "status": "Ativo"
+                }
+            
+            O email deve ser único no sistema.
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.UsuarioController.Update(Dominio.ModelosDTO.UsuarioDTO)">
+            <summary>
+            Atualiza os dados de um usuário existente.
+            </summary>
+            <param name="modelo">Dados atualizados do usuário</param>
+            <returns>Resultado da operação</returns>
+            <response code="200">Se o usuário foi atualizado com sucesso</response>
+            <response code="400">Se os dados forem inválidos ou o email já existir</response>
+            <response code="404">Se o usuário não for encontrado</response>
+            <remarks>
+            Perfil Necessário: Admin
+            - Se o status for alterado para Inativo, a data de inativação será registrada
+            - O email deve permanecer único no sistema
+            
+                PUT /Usuario
+                {
+                    "id": 1,
+                    "email": "atualizado@exemplo.com",
+                    "senha": "novaSenha123",
+                    "perfil": "Editor",
+                    "status": "Ativo"
+                }
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.UsuarioController.Delete(System.Int32)">
+            <summary>
+            Remove um usuário do sistema.
+            </summary>
+            <param name="id">ID do usuário a ser removido</param>
+            <returns>Resultado da operação</returns>
+            <response code="200">Se o usuário foi removido com sucesso</response>
+            <response code="404">Se o usuário não for encontrado</response>
+            <remarks>
+            Perfil Necessário: Admin
+            
+                DELETE /Usuario/{id}
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.UsuarioController.Get(System.Int32)">
+            <summary>
+            Obtém os dados de um usuário específico.
+            </summary>
+            <param name="id">ID do usuário a ser consultado</param>
+            <returns>Dados do usuário</returns>
+            <response code="200">Retorna os dados do usuário solicitado</response>
+            <response code="404">Se o usuário não for encontrado</response>
+            <remarks>
+            Perfil Necessário: Admin
+            
+                GET /Usuario/{id}
+            </remarks>
+        </member>
+        <member name="M:API.Controllers.UsuarioController.Get(System.Int32,System.Int32,System.String)">
+            <summary>
+            Lista usuários do sistema com paginação e busca opcional.
+            </summary>
+            <param name="pagina">Número da página (começa em 1)</param>
+            <param name="totalPorPagina">Quantidade de registros por página</param>
+            <param name="termo">Termo opcional para filtrar usuários por email</param>
+            <returns>Lista paginada de usuários</returns>
+            <response code="200">Retorna a lista de usuários</response>
+            <response code="404">Se nenhum usuário for encontrado</response>
+            <remarks>
+            Perfil Necessário: Admin
+            - O usuário logado é excluído da listagem para evitar auto-modificação
+            - A busca é case-insensitive no email do usuário
+            
+                GET /Usuario/{pagina}/{totalPorPagina}/{termo?}
+            </remarks>
+        </member>
+    </members>
+</doc>

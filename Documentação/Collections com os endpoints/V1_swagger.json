@@ -1,0 +1,1740 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Api AlterData",
+    "description": "Documentação da API Alterdata",
+    "contact": {
+      "name": "Eglecio Alexandre Pereira",
+      "url": "https://github.com/eglecio/AlterData",
+      "email": "eglecio@gmail.com"
+    },
+    "version": "v1"
+  },
+  "paths": {
+    "/Cliente": {
+      "post": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Adiciona um novo cliente no sistema.",
+        "description": "Perfil Necessário: Editor ou Admin\r\nExemplo de requisição:\r\n\r\n    POST /Cliente\r\n    {\r\n        \"nome\": \"João Silva\",\r\n        \"email\": \"joao@exemplo.com\",\r\n        \"telefone\": \"11999999999\"\r\n    }",
+        "requestBody": {
+          "description": "Objeto DTO contendo as informações do cliente",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClienteDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClienteDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClienteDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Retorna o ID do cliente criado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Se os dados do cliente forem inválidos",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Se ocorrer um erro interno durante o processamento"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Atualiza as informações de um cliente existente.",
+        "description": "Perfil Necessário: Editor ou Admin\r\nExemplo de requisição:\r\n\r\n    PUT /Cliente\r\n    {\r\n        \"id\": 1,\r\n        \"nome\": \"João Silva Atualizado\",\r\n        \"email\": \"joao.atual@exemplo.com\",\r\n        \"telefone\": \"11988888888\"\r\n    }",
+        "requestBody": {
+          "description": "Objeto DTO contendo as informações atualizadas do cliente",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClienteDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClienteDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClienteDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Se o cliente foi atualizado com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Se os dados atualizados do cliente forem inválidos",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Se o cliente não for encontrado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cliente/{clienteId}": {
+      "delete": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Remove um cliente do sistema.",
+        "description": "Perfil Necessário: Editor ou Admin\r\n\r\n    DELETE /Cliente/{clienteId}",
+        "parameters": [
+          {
+            "name": "clienteId",
+            "in": "path",
+            "description": "O ID do cliente a ser removido",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Se o cliente foi removido com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Se o cliente não foi encontrado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Recupera os detalhes de um cliente específico pelo ID.",
+        "description": "Perfil Necessário: Padrão, Editor ou Admin\r\n\r\n    GET /Cliente/{clienteId}",
+        "parameters": [
+          {
+            "name": "clienteId",
+            "in": "path",
+            "description": "O ID do cliente a ser consultado",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna as informações do cliente solicitado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Se o cliente não foi encontrado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cliente/{pagina}/{totalPorPagina}/{termo}": {
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Recupera uma lista paginada de clientes com funcionalidade de busca opcional.",
+        "description": "Perfil Necessário: Padrão, Editor ou Admin\r\n\r\n    GET /Cliente/{pagina}/{totalPorPagina}/{termo?}",
+        "parameters": [
+          {
+            "name": "pagina",
+            "in": "path",
+            "description": "Número da página (padrão: 1)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "totalPorPagina",
+            "in": "path",
+            "description": "Itens por página (padrão: 10)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "termo",
+            "in": "path",
+            "description": "Termo de busca opcional para filtrar clientes por nome, email ou telefone",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de clientes",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClienteListagemDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClienteListagemDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClienteListagemDTO"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Se nenhum cliente for encontrado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Cliente/dashboard": {
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Obtém o total de clientes ativos no sistema para fins de dashboard.",
+        "description": "Perfil Necessário: Padrão, Editor ou Admin\r\n\r\n    GET /Cliente/dashboard",
+        "responses": {
+          "200": {
+            "description": "Retorna o total de clientes ativos",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Produto": {
+      "post": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Adiciona um novo produto no sistema.",
+        "description": "Perfil Necessário: Editor ou Admin\r\nExemplo de requisição:\r\n\r\n    POST /Produto\r\n    {\r\n        \"nome\": \"Produto Exemplo\",\r\n        \"descricao\": \"Descrição do produto\",\r\n        \"preco\": 99.90,\r\n        \"quantidadeEstoque\": 100\r\n    }",
+        "requestBody": {
+          "description": "Objeto DTO contendo as informações do produto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProdutoDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProdutoDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProdutoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Se o produto foi criado com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProdutoDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProdutoDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProdutoDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Se os dados do produto forem inválidos",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Se o usuário não estiver autenticado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Se o usuário não tiver permissão de editor ou admin",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Atualiza as informações de um produto existente.",
+        "description": "Perfil Necessário: Editor ou Admin\r\nExemplo de requisição:\r\n\r\n    PUT /Produto\r\n    {\r\n        \"id\": 1,\r\n        \"nome\": \"Produto Atualizado\",\r\n        \"descricao\": \"Nova descrição\",\r\n        \"preco\": 149.90,\r\n        \"quantidadeEstoque\": 150\r\n    }",
+        "requestBody": {
+          "description": "Objeto DTO contendo as informações atualizadas do produto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProdutoDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProdutoDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProdutoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Se o produto foi atualizado com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProdutoDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProdutoDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProdutoDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Se os dados atualizados do produto forem inválidos",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Se o produto não for encontrado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Produto/{id}": {
+      "delete": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Remove um produto do sistema.",
+        "description": "Perfil Necessário: Editor ou Admin\r\n\r\n    DELETE /Produto/{id}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do produto a ser removido",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Se o produto foi removido com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProdutoDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProdutoDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProdutoDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Se o produto não foi encontrado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Recupera os detalhes de um produto específico pelo ID.",
+        "description": "Perfil Necessário: Padrão, Editor ou Admin\r\n\r\n    GET /Produto/{id}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do produto a ser consultado",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna as informações do produto solicitado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProdutoDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProdutoDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProdutoDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Se o produto não foi encontrado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Produto/{pagina}/{totalPorPagina}/{termo}": {
+      "get": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Recupera uma lista paginada de produtos com funcionalidade de busca opcional.",
+        "description": "Perfil Necessário: Padrão, Editor ou Admin\r\n\r\n    GET /Produto/{pagina}/{totalPorPagina}/{termo?}",
+        "parameters": [
+          {
+            "name": "pagina",
+            "in": "path",
+            "description": "Número da página (padrão: 1)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "totalPorPagina",
+            "in": "path",
+            "description": "Itens por página (padrão: 10)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "termo",
+            "in": "path",
+            "description": "Termo de busca opcional para filtrar produtos por nome",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de produtos",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProdutoListagemDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProdutoListagemDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProdutoListagemDTO"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Se nenhum produto for encontrado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Produto/dashboard": {
+      "get": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Obtém o total de produtos ativos no sistema para fins de dashboard.",
+        "description": "Perfil Necessário: Padrão, Editor ou Admin\r\n\r\n    GET /Produto/dashboard",
+        "responses": {
+          "200": {
+            "description": "Retorna o total de produtos ativos",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Produto/top": {
+      "get": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Lista os 10 produtos com maior quantidade em estoque.",
+        "description": "Perfil Necessário: Padrão, Editor ou Admin\r\nRetorna uma lista de pares chave-valor onde:\r\n- Chave (string): Nome do produto\r\n- Valor (int): Quantidade em estoque\r\n\r\n    GET /Produto/top",
+        "responses": {
+          "200": {
+            "description": "Retorna a lista dos produtos com maior estoque",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StringInt32KeyValuePair"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StringInt32KeyValuePair"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StringInt32KeyValuePair"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Produto/estoque-negativo": {
+      "get": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Lista os 10 produtos com estoque zerado ou negativo.",
+        "description": "Perfil Necessário: Padrão, Editor ou Admin\r\nRetorna uma lista de pares chave-valor onde:\r\n- Chave (string): Nome do produto\r\n- Valor (int): Quantidade em estoque (zero ou negativo)\r\n\r\n    GET /Produto/estoque-negativo",
+        "responses": {
+          "200": {
+            "description": "Retorna a lista dos produtos com estoque zerado ou negativo",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StringInt32KeyValuePair"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StringInt32KeyValuePair"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StringInt32KeyValuePair"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Usuario/login": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Realiza a autenticação do usuário no sistema.",
+        "description": "Endpoint público que não requer autenticação prévia.\r\nExemplo de requisição:\r\n\r\n    POST /Usuario/login\r\n    {\r\n        \"login\": \"usuario@exemplo.com\",\r\n        \"senha\": \"senhaSegura123\"\r\n    }\r\n\r\nO token retornado deve ser incluído no header Authorization das requisições subsequentes.",
+        "requestBody": {
+          "description": "Credenciais do usuário",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioLoginDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioLoginDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioLoginDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Retorna o token de autenticação (.NET Core 8 Bearer Token)"
+          },
+          "400": {
+            "description": "Se as credenciais forem inválidas",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Se o usuário não for encontrado ou estiver inativo",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Usuario/perfil": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Obtém o perfil do usuário atualmente autenticado.",
+        "description": "Endpoint protegido que requer autenticação.\r\n\r\n    GET /Usuario/perfil",
+        "responses": {
+          "200": {
+            "description": "Retorna o perfil do usuário (ex: \"Admin\", \"Editor\", \"Padrao\")",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Se o usuário não estiver autenticado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Usuario": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Adiciona um novo usuário ao sistema.",
+        "description": "Perfil Necessário: Admin\r\nExemplo de requisição:\r\n\r\n    POST /Usuario\r\n    {\r\n        \"email\": \"novo@exemplo.com\",\r\n        \"senha\": \"senhaSegura123\",\r\n        \"perfil\": \"Padrao\",\r\n        \"status\": \"Ativo\"\r\n    }\r\n\r\nO email deve ser único no sistema.",
+        "requestBody": {
+          "description": "Dados do novo usuário",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Se o usuário foi criado com sucesso"
+          },
+          "400": {
+            "description": "Se os dados forem inválidos ou o email já existir",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Se o usuário não estiver autenticado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Se o usuário não tiver perfil de administrador",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Atualiza os dados de um usuário existente.",
+        "description": "Perfil Necessário: Admin\r\n- Se o status for alterado para Inativo, a data de inativação será registrada\r\n- O email deve permanecer único no sistema\r\n\r\n    PUT /Usuario\r\n    {\r\n        \"id\": 1,\r\n        \"email\": \"atualizado@exemplo.com\",\r\n        \"senha\": \"novaSenha123\",\r\n        \"perfil\": \"Editor\",\r\n        \"status\": \"Ativo\"\r\n    }",
+        "requestBody": {
+          "description": "Dados atualizados do usuário",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Se o usuário foi atualizado com sucesso"
+          },
+          "400": {
+            "description": "Se os dados forem inválidos ou o email já existir",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Se o usuário não for encontrado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Usuario/{id}": {
+      "delete": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Remove um usuário do sistema.",
+        "description": "Perfil Necessário: Admin\r\n\r\n    DELETE /Usuario/{id}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do usuário a ser removido",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Se o usuário foi removido com sucesso"
+          },
+          "404": {
+            "description": "Se o usuário não for encontrado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Obtém os dados de um usuário específico.",
+        "description": "Perfil Necessário: Admin\r\n\r\n    GET /Usuario/{id}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do usuário a ser consultado",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna os dados do usuário solicitado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioVisualizacaoDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioVisualizacaoDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioVisualizacaoDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Se o usuário não for encontrado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Usuario/{pagina}/{totalPorPagina}/{termo}": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Lista usuários do sistema com paginação e busca opcional.",
+        "description": "Perfil Necessário: Admin\r\n- O usuário logado é excluído da listagem para evitar auto-modificação\r\n- A busca é case-insensitive no email do usuário\r\n\r\n    GET /Usuario/{pagina}/{totalPorPagina}/{termo?}",
+        "parameters": [
+          {
+            "name": "pagina",
+            "in": "path",
+            "description": "Número da página (começa em 1)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "totalPorPagina",
+            "in": "path",
+            "description": "Quantidade de registros por página",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "termo",
+            "in": "path",
+            "description": "Termo opcional para filtrar usuários por email",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de usuários",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UsuarioListagemDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UsuarioListagemDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UsuarioListagemDTO"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Se nenhum usuário for encontrado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ClienteDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nome": {
+            "type": "string",
+            "nullable": true
+          },
+          "cpf": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefone": {
+            "type": "string",
+            "nullable": true
+          },
+          "endereco": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacao": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ClienteListagemDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nome": {
+            "type": "string",
+            "nullable": true
+          },
+          "cpf": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefone": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PerfilUsuario": {
+        "enum": [
+          1,
+          2,
+          99
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "ProdutoDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nome": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantidadeEstoque": {
+            "type": "number",
+            "format": "double"
+          },
+          "valorVenda": {
+            "type": "number",
+            "format": "double"
+          },
+          "valorCusto": {
+            "type": "number",
+            "format": "double"
+          },
+          "observacao": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProdutoListagemDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nome": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantidadeEstoque": {
+            "type": "number",
+            "format": "double"
+          },
+          "valorVenda": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StatusUsuario": {
+        "enum": [
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "StringInt32KeyValuePair": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UsuarioDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "senha": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/StatusUsuario"
+          },
+          "perfil": {
+            "$ref": "#/components/schemas/PerfilUsuario"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UsuarioListagemDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/StatusUsuario"
+          },
+          "perfil": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UsuarioLoginDTO": {
+        "type": "object",
+        "properties": {
+          "login": {
+            "type": "string",
+            "nullable": true
+          },
+          "senha": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UsuarioVisualizacaoDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataInativacao": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataCadastro": {
+            "type": "string",
+            "nullable": true
+          },
+          "senha": {
+            "type": "string",
+            "nullable": true
+          },
+          "perfilDescricao": {
+            "type": "string",
+            "nullable": true
+          },
+          "statusDescricao": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/StatusUsuario"
+          },
+          "perfil": {
+            "$ref": "#/components/schemas/PerfilUsuario"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Token estilo JWT de autorizacao usado no header atraves do esqueema Bearer",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

@@ -8,6 +8,7 @@ using Microsoft.OpenApi.Models;
 using static System.Net.Mime.MediaTypeNames;
 using System.Diagnostics.Metrics;
 using System.Reflection.Metadata;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options => {
@@ -22,8 +23,8 @@ builder.Services.AddCors(options => {
 
 
 // Add services to the container.
-
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+  ;
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -31,7 +32,7 @@ builder.Services.AddSwaggerGen(c => {
   c.SwaggerDoc("v1", new OpenApiInfo {
     Title = "Api AlterData",
     Version = "v1",
-    Description = "Documentação da API",
+    Description = "Documentação da API Alterdata",
     Contact = new OpenApiContact {
       Name = "Eglecio Alexandre Pereira",
       Email = "eglecio@gmail.com",
@@ -39,27 +40,32 @@ builder.Services.AddSwaggerGen(c => {
     }
   });
 
+  // Para o swagger poder ler os comentários dos XML...
+  var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+  var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+  c.IncludeXmlComments(xmlPath);
+
   c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme() {
+    Description = "Token estilo JWT de autorizacao usado no header atraves do esqueema Bearer",
     Name = "Authorization",
     Type = SecuritySchemeType.ApiKey,
     Scheme = "Bearer",
     BearerFormat = "JWT",
     In = ParameterLocation.Header
   });
-  c.AddSecurityRequirement(new OpenApiSecurityRequirement
-  {
+
+  c.AddSecurityRequirement(new OpenApiSecurityRequirement {
     {
-      new OpenApiSecurityScheme
-      {
-        Reference = new OpenApiReference
-        {
+      new OpenApiSecurityScheme {
+        Reference = new OpenApiReference {
           Type = ReferenceType.SecurityScheme,
           Id = "Bearer"
         }
       },
-      new string[] {}
+      Array.Empty<string>()
     }
   });
+
 });
 
 builder.Services.AddAuthentication().AddBearerToken();
