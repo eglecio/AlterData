@@ -3,7 +3,7 @@
     <div class="row q-col-gutter-sm q-py-sm q-pr-sm">
       <q-card class="col-lg-8 col-md-8 col-sm-12 col-xs-12 q-ma-sm">
         <q-card-section>
-          <div class="text-h6">Top 10 Produtos com Maior Estoque</div>
+          <div class="text-h6 text-center">Top 10 Produtos com Maior Estoque</div>
           <ECharts
             v-if="!maiorEstoqueEstaVazio"
             ref="barchartMaiorEstoque"
@@ -26,7 +26,7 @@
       <q-card class="col-lg-8 col-md-8 col-sm-12 col-xs-12 q-ma-sm">
         <q-card-section style="padding: 0">
           <div class="text-h6 text-center">Produtos com Estoque Zerado ou Negativo</div>
-          <div v-if="estoqueNegativoEstaVazio" class="text-h6 text-center">
+          <div v-if="estoqueNegativoEstaVazio === true" class="text-h6 text-center">
             <q-card-section class="bg-green-1 text-green-10 text-center q-pa-md">
             Todos os produtos estão com estoque positivo.
             </q-card-section>
@@ -159,9 +159,9 @@ export default defineComponent({
     return {
       barChartMaiorEstoqueOptions,
       barChartEstoqueZeradoOuNegativoOptions,
-      maiorEstoqueEstaVazio: false,
-      estoqueNegativoEstaVazio: false,
-      mode: 'list'
+      maiorEstoqueEstaVazio: ref(false),
+      estoqueNegativoEstaVazio: ref(false),
+      mode: ref('list')
     }
   },
 
