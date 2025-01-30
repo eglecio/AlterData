@@ -67,7 +67,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item v-if="perfilPermissao === 99" to="/usuarios" active-class="q-item-no-link-highlighting">
+        <q-item v-if="perfilPermissao === perfilPermissaoEnum.Admin" to="/usuarios" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
             <q-icon name="fas fa-regular fa-users-gear"/>
           </q-item-section>
@@ -99,12 +99,6 @@ import {defineComponent, ref} from 'vue'
 import { api } from 'boot/axios'
 import { useQuasar, Loading, LocalStorage, Notify, QSpinnerGears } from 'quasar'
 
-const perfilPermissaoEnum = {
-  Padrao: 1,
-  Editor: 2,
-  Admin: 99
-}
-
 export default defineComponent({
   name: 'MainLayout',
 
@@ -112,6 +106,11 @@ export default defineComponent({
   },
 
   setup() {
+    const perfilPermissaoEnum = {
+      Padrao: 1,
+      Editor: 2,
+      Admin: 99
+    }
     const leftDrawerOpen = ref(false)
     const $q = useQuasar()
     const urlLogo = ref('img/user-avatar.png')
@@ -122,7 +121,8 @@ export default defineComponent({
         leftDrawerOpen.value = !leftDrawerOpen.value
       },
       urlLogo,
-      login: ref('')
+      login: ref(''),
+      perfilPermissaoEnum
     }
   },
 
@@ -158,13 +158,13 @@ export default defineComponent({
         var response = await api.get('usuario/perfil')
         switch (response.data) {
           case 'Admin':
-            this.perfilPermissao = perfilPermissaoEnum.Admin
+            this.perfilPermissao = this.perfilPermissaoEnum.Admin
             break
           case 'Editor':
-            this.perfilPermissao = perfilPermissaoEnum.Editor
+            this.perfilPermissao = this.perfilPermissaoEnum.Editor
             break
           default:
-            this.perfilPermissao = perfilPermissaoEnum.Padrao
+            this.perfilPermissao = this.perfilPermissaoEnum.Padrao
             break
         }
 
