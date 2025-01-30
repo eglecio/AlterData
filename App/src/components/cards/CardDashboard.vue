@@ -2,14 +2,19 @@
   <q-card class="bg-transparent no-shadow no-border" bordered>
     <q-card-section class="q-pa-none">
       <div class="row q-col-gutter-sm ">
-        <div v-for="(item, index) in items" :key="index" class="col-md-3 col-sm-12 col-xs-12">
-          <q-item :style="`background-color: ${item.color1}`" class="q-pa-none" to="/clientes" >
+        <div v-for="(item, index) in items" :key="index" class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+          <q-item  clickable v-ripple :style="`background-color: ${item.color1}`" class="q-pa-none" :to="`${item.destino}`" >
             <q-item-section v-if="icon_position === 'left'" side :style="`background-color: ${item.color2}`"
                             class=" q-pa-lg q-mr-none text-white">
               <q-icon :name="item.icon" color="white" size="24px"></q-icon>
             </q-item-section>
-            <q-item-section class=" q-pa-md q-ml-none  text-white">
-              <q-item-label class="text-white text-h6 text-weight-bolder">{{ item.value }}</q-item-label>
+            <q-item-section class=" q-pa-md q-ml-none text-white">
+              <div v-if="item.carregando === true" class="text-white text-center" style="height: 10px !important;">
+                <q-spinner-dots color="white" style="margin: 0; padding: 0; " size="40px" />
+              </div>
+              <q-item-label v-else class="text-white text-h6 text-weight-bolder">
+                {{ item.value }}
+              </q-item-label>
               <q-item-label>{{ item.title }}</q-item-label>
             </q-item-section>
             <q-item-section v-if="icon_position === 'right'" side class="q-mr-md text-white">
@@ -37,39 +42,30 @@ export default defineComponent({
   },
 
   mounted () {
-    this.obterDados()
+    this.obterTotalClientes()
+    this.obterTotalProdutos()
   },
 
   computed: {
     items: function () {
       return [
           {
-            title: "Clientes Ativos",
+            title: this.dadosDashboard.TotalDeClientes > 1 ? "Clientes" : "Cliente",
             icon: "fas fa-users",
-            value: this.dadosDashboard.ClientesAtivos,
+            value: this.dadosDashboard.TotalDeClientes,
             color1: "#5064b5",
-            color2: "#3e51b5"
+            color2: "#3e51b5",
+            carregando: this.dadosDashboard.CarregandoTotalDeClientes,
+            destino: "/clientes"
           },
           {
-            title: "Clientes Inativos",
-            icon: "fas fa-users",
-            value: this.dadosDashboard.ClientesInativos,
+            title: this.dadosDashboard.TotalDeProdutos > 1 ? "Produtos" : "Produto",
+            icon: "fas fa-solid fa-cubes",
+            value: this.dadosDashboard.TotalDeProdutos,
             color1: "#f37169",
-            color2: "#f34636"
-          },
-          {
-            title: "Últimos acessos (ÚNICOS)",
-            icon: "bar_chart",
-            value: this.dadosDashboard.TotalAcessosUnicos,
-            color1: "#ea6a7f",
-            color2: "#ea4b64"
-          },
-          {
-            title: "Últimos acessos (TOTAL)",
-            icon: "bar_chart",
-            value: this.dadosDashboard.TotalAcessos,
-            color1: "#a270b1",
-            color2: "#9f52b1"
+            color2: "#f34636",
+            carregando: this.dadosDashboard.CarregandoTotalDeProdutos,
+            destino: "/produtos"
           }
         ]
     }
@@ -77,12 +73,10 @@ export default defineComponent({
 
   setup() {
     const dadosDashboard = ref({
-      ClientesAtivos: 0,
-      ClientesInativos: 0,
-      TotalAcessosUnicos: 0,
-      TotalAcessos: 0,
-      AcessosUnicos: [],
-      Acessos: []
+      TotalDeClientes: 0,
+      TotalDeProdutos: 0,
+      CarregandoTotalDeClientes: true,
+      CarregandoTotalDeProdutos: true
     });
 
     return {
@@ -91,15 +85,29 @@ export default defineComponent({
   },
 
   methods: {
-    async obterDados () {
-      Loading.show({ spinner: QSpinnerGears })
+    async obterTotalClientes () {
+      this.dadosDashboard.CarregandoTotalDeClientes = true
       try {
-        const response = await api.post(`empresa/dashboard`)
-        this.dadosDashboard = response.data.Result
+        const response = await api.get(`cliente/dashboard`)
+        this.dadosDashboard.TotalDeClientes = response.data
       } catch (error) {
         console.log(error)
       }
-      Loading.hide()
+      finally {
+        this.dadosDashboard.CarregandoTotalDeClientes = false
+      }
+    },
+
+    async obterTotalProdutos () {
+      try {
+        const response = await api.get(`produto/dashboard`)
+        this.dadosDashboard.TotalDeProdutos = response.data
+      } catch (error) {
+        console.log(error)
+      }
+      finally {
+        this.dadosDashboard.CarregandoTotalDeProdutos = false
+      }
     }
   }
 })

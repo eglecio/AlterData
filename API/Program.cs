@@ -28,7 +28,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(c => {
-  c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api AlterData", Version = "v1" });
+  c.SwaggerDoc("v1", new OpenApiInfo {
+    Title = "Api AlterData",
+    Version = "v1",
+    Description = "Documentação da API",
+    Contact = new OpenApiContact {
+      Name = "Eglecio Alexandre Pereira",
+      Email = "eglecio@gmail.com",
+      Url = new Uri("https://github.com/eglecio/AlterData")
+    }
+  });
 
   c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme() {
     Name = "Authorization",
@@ -74,6 +83,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment()) {
   app.UseSwagger();
   app.UseSwaggerUI();
+  //app.UseSwaggerUI(c => {
+  //  c.SwaggerEndpoint("/swagger/v1/swagger.json", "Minha API v1");
+  //  c.RoutePrefix = string.Empty; // Swagger será carregado na raiz do aplicativo
+  //});
 }
 
 app.UseHttpsRedirection();

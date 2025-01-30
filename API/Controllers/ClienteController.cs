@@ -100,7 +100,7 @@ namespace API.Controllers {
     // GET: cliente
     // <snippet_Create>
     [HttpGet("{clienteId}")]
-    [Authorize(Roles = "Editor,Admin")]
+    [Authorize(Roles = "Padrao,Editor,Admin")]
     public async Task<ActionResult<ClienteDTO>> Get(int clienteId) {
       try {
         var cliente = await _repositorio.ObterPorIdAsync(clienteId);
@@ -116,7 +116,7 @@ namespace API.Controllers {
 
     // GET: cliente
     // <snippet_Create>
-    [Authorize(Roles = "Usuario,Editor,Admin")]
+    [Authorize(Roles = "Padrao,Editor,Admin")]
     [HttpGet("{pagina}/{totalPorPagina}/{termo?}")]
     public async Task<ActionResult<IEnumerable<ClienteListagemDTO>>> Get(int pagina = 1, int totalPorPagina = 10, string termo = "") {
       try {
@@ -132,13 +132,6 @@ namespace API.Controllers {
           clientes = await _repositorio.BuscarPaginadoAsync(x => !x.Excluido, pagina, totalPorPagina, z => z.Id);
         }
 
-        // para testr a paginacao infinita...
-        //List<Cliente> gambiarra = new();
-        //for (var i = 0; i < 50; i++) {
-        //  gambiarra.AddRange(clientes);
-        //}
-        //clientes = gambiarra;
-
         return Ok(_mapper.Map<List<ClienteListagemDTO>>(clientes
            .Skip((pagina - 1) * totalPorPagina)
            .Take(totalPorPagina).ToList()));
@@ -149,6 +142,22 @@ namespace API.Controllers {
     }
     // </snippet_Create>
 
+
+    /// <summary>
+    /// Obtém o total de clientes cadastrados.
+    /// Todos os perfis de usuário tem acesso.
+    /// </summary>
+    /// <returns>Um núumero inteiro.</returns>
+    [Authorize(Roles = "Padrao,Editor,Admin")]
+    [HttpGet("dashboard")]
+    public async Task<ActionResult<int>> Get([FromServices] ContextoBancoDeDados contextoBancoDeDados) {
+      try {
+        return Ok(await contextoBancoDeDados.Clientes.Where(x => !x.Excluido).CountAsync());
+      }
+      catch (RepositorioException) {
+        return Ok(0);
+      }
+    }
 
 
   }

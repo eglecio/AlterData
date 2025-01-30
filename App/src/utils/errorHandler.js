@@ -82,7 +82,7 @@ export const handleAxiosError = (error, customConfig = {}) => {
     401: 'Acesso não autorizado. Se isso for um engano, por favor faça login novamente.',
     403: 'Acesso negado. Você não tem permissão para esta ação.',
     404: 'Registro não encontrado.',
-    405: 'Requisição não permitda ou parâmetros inválidos.',
+    405: 'Requisição não permitida ou parâmetros inválidos.',
     422: 'Dados inválidos. Verifique as informações enviadas.',
     429: 'Muitas requisições. Aguarde um momento.',
     500: 'Erro interno do servidor.',

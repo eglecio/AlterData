@@ -52,7 +52,7 @@
                             Estoque: {{ produto.quantidadeEstoque }}
                           </div>
                           <div class="col-6">
-                            Valor De Venda: {{ formatarParaReal(produto.valorVenda) }}
+                            Valor: {{ formatarParaReal(produto.valorVenda) }}
                           </div>
                         </div>
 
@@ -224,8 +224,13 @@ export default defineComponent({
       atributos,
       confirmacaoRemover,
       id_ParaRemover,
-      nome_ParaRemover
+      permissaoEdicao: ref(false)
     }
+  },
+
+  mounted () {
+    var permitidoEdicao = [ 99, 2 ]
+    this.permissaoEdicao = permitidoEdicao.indexOf(LocalStorage.getItem('perfilPermissao')) > -1
   },
 
   methods: {
@@ -259,7 +264,7 @@ export default defineComponent({
         var finalizarCarregamento = (possuiRegistros) => {
           setTimeout(() => {
             if (possuiRegistros === false) {
-              instance.$refs.infinteScrollRef.stop()
+              instance.$refs.infinteScrollRef?.stop()
             }
             if (typeof done === "function") {
               done() // usado pra desaparecer o spinner...
@@ -285,7 +290,7 @@ export default defineComponent({
 
     pesquisar (e) {
       var instance = this
-      this.pagina = 0
+      this.pagina = 1
 
       setTimeout(async () => {
         if (e === instance.termoPesquisa && instance.termoPesquisa !== '') {
@@ -310,10 +315,30 @@ export default defineComponent({
     },
 
     editar (modelo) {
+      if (this.permissaoEdicao === false) {
+        Notify.create({
+          message: 'Você não tem permissão para editar produtos',
+          color: 'negative',
+          icon: 'warning',
+          position: 'center',
+          timeout: 2000
+        })
+        return
+      }
       this.$router.push(`/produto/${modelo.id}`)
     },
 
     remover (modelo) {
+      if (this.permissaoEdicao === false) {
+        Notify.create({
+          message: 'Você não tem permissão para remover produtos',
+          color: 'negative',
+          icon: 'warning',
+          position: 'center',
+          timeout: 2000
+        })
+        return
+      }
       this.id_ParaRemover = modelo.id
       this.nome_ParaRemover = modelo.nome
       this.confirmacaoRemover = true

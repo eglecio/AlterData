@@ -37,6 +37,7 @@
                     :rules="[
                       val => !!val || 'Quantidade em estoque é obrigatória'
                     ]"
+                    type="number"
                     mask="#.##"
                     fill-mask="0"
                     reverse-fill-mask
