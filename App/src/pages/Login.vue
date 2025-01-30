@@ -69,8 +69,8 @@ export default defineComponent({
     // }
 
     return {
-      login: ref('dev@teste.com'),
-      senha: ref('123456')
+      login: ref(''),
+      senha: ref('')
       // setTokenPadraoParaRequisicoes
     }
   },
@@ -87,7 +87,6 @@ export default defineComponent({
 
       await api.post(`usuario/login`, { Login: this.login, Senha: this.senha })
         .then((response) => {
-          console.log(response.data)
           if (response.data) {
             LocalStorage.set('tokenCompleto', response.data)
             LocalStorage.set('token', response.data.accessToken)

@@ -2,7 +2,23 @@
   <q-page class="q-pa-sm">
     <card-dashboard />
 
+    <card-dashboard-graficos />
     <!-- <card-charts/> -->
+
+    <!-- <div class="row q-col-gutter-sm q-py-sm q-pr-sm">
+      <q-card class="col-lg-8 col-md-8 col-sm-12 col-xs-12 q-ma-sm">
+        <q-card-section>
+          <div class="text-h6">Top 10 Produtos com Maior Estoque</div>
+          <ECharts
+            ref="barchartMaiorEstoque"
+            :option="barChartOptions"
+            style="height: 400px;"
+            :resizable="true"
+            autoresize
+            class="q-mt-md" />
+        </q-card-section>
+      </q-card>
+    </div> -->
 
     <!-- <div class="row q-col-gutter-sm  q-py-sm">
       <tab-social/>
@@ -26,13 +42,9 @@ export default defineComponent({
   name: 'PageIndex',
   components: {
     CardDashboard: defineAsyncComponent(() => import('components/cards/CardDashboard.vue')),
-    CardCharts: defineAsyncComponent(() => import('components/cards/CardCharts.vue'))
-    // TabSocial: defineAsyncComponent(() => import('components/tabs/TabSocial.vue')),
-    // CardWithImage: defineAsyncComponent(() => import('components/cards/CardWithImage.vue')),
-    // CardTimeLine: defineAsyncComponent(() => import('components/cards/CardTimeLine.vue')),
-    // TodoList: defineAsyncComponent(() => import('components/list/TodoList.vue')),
-    // TableVisits: defineAsyncComponent(() => import('components/tables/TableVisits.vue')),
+    CardDashboardGraficos: defineAsyncComponent(() => import('components/cards/CardDashboardGraficos.vue')),
   },
+
   setup() {
     return {
       mode: 'list'

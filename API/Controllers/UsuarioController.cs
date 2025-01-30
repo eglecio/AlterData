@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Dominio.Entidades;
+using Dominio.Enumeradores;
 using Dominio.Interfaces;
 using Dominio.ModelosDTO;
 using Dominio.Servicos;
@@ -7,6 +8,7 @@ using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -87,6 +89,20 @@ namespace API.Controllers {
     public ActionResult<bool> ValidarToken() {
       // Necessario essa validacao extra, pois infelizmente no interceptador do axios esta dando erro de rede quando recebe http 401 entre outros codigos de retorno...
       return Ok(User?.Identity?.IsAuthenticated ?? false);
+    }
+    // </snippet_Create>
+
+
+    // GET: usuario/perfil
+    /// <summary>
+    /// Obtém o perfil do usuario autenticao, para bloquear ou liberar funcoes no app...
+    /// Todos os perfis de usuário tem acesso a este metodo.
+    /// </summary>
+    /// <returns>Um núumero inteiro.</returns>
+    [HttpGet]
+    [Route("perfil")]
+    public ActionResult<string> ObterPerfil() {
+      return Ok(User?.FindFirst(ClaimTypes.Role)?.Value ?? "");
     }
     // </snippet_Create>
 

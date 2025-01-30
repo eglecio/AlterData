@@ -235,8 +235,14 @@ export default defineComponent({
       atributos_cliente,
       confirmacaoRemoverCliente,
       clienteId_ParaRemover,
-      clienteNome_ParaRemover
+      clienteNome_ParaRemover,
+      permissaoEdicao: ref(false)
     }
+  },
+
+  mounted () {
+    var permitidoEdicao = [ 99, 2 ]
+    this.permissaoEdicao = permitidoEdicao.indexOf(LocalStorage.getItem('perfilPermissao')) > -1
   },
 
   methods: {
@@ -329,10 +335,31 @@ export default defineComponent({
     },
 
     editar (cliente) {
+      if (this.permissaoEdicao === false) {
+        Notify.create({
+          message: 'Você não tem permissão para editar clientes',
+          color: 'negative',
+          icon: 'warning',
+          position: 'center',
+          timeout: 2000
+        })
+        return
+      }
+
       this.$router.push(`/cliente/${cliente.id}`)
     },
 
     remover (cliente) {
+      if (this.permissaoEdicao === false) {
+        Notify.create({
+          message: 'Você não tem permissão para remover clientes',
+          color: 'negative',
+          icon: 'warning',
+          position: 'center',
+          timeout: 2000
+        })
+        return
+      }
       this.clienteId_ParaRemover = cliente.id
       this.clienteNome_ParaRemover = cliente.nome
       this.confirmacaoRemoverCliente = true
