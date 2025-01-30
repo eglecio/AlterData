@@ -26,20 +26,19 @@
       <q-card class="col-lg-8 col-md-8 col-sm-12 col-xs-12 q-ma-sm">
         <q-card-section style="padding: 0">
           <div class="text-h6 text-center">Produtos com Estoque Zerado ou Negativo</div>
+          <div v-if="estoqueNegativoEstaVazio" class="text-h6 text-center">
+            <q-card-section class="bg-green-1 text-green-10 text-center q-pa-md">
+            Todos os produtos estão com estoque positivo.
+            </q-card-section>
+          </div>
           <ECharts
-            v-if="estoqueNegativoEstaVazio"
+            v-else
             ref="barChartEstoqueZeradoOuNegativo"
             :option="barChartEstoqueZeradoOuNegativoOptions"
             style="height: 400px;"
             :resizable="true"
             autoresize
             class="q-mt-md" />
-          <div v-else class="text-h6 text-center">
-            <q-card-section class="bg-green-1 text-green-10 text-center q-pa-md">
-            Todos os produtos estão com estoque positivo.
-            </q-card-section>
-          </div>
-
         </q-card-section>
       </q-card>
     </div>
