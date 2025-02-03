@@ -1,5 +1,5 @@
 # AlterData
-Projeto para atender ao gerenciamento de produtos e clientes empresariais, usando tecnologias como em C#, Vue.js, EF-8.
+Projeto para atender ao gerenciamento de produtos e clientes empresariais, usando tecnologias como C#, Vue.js, EF-8.
 
 # Descritivo
 Neste repositório teremos a aplicação mobile no formato SPA (Single Page Application), que irá consumir os recursos ofertados por uma web api.
